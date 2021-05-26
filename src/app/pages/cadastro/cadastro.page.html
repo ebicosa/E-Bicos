@@ -1,0 +1,68 @@
+<ion-header>
+<ion-toolbar color="primary">
+   <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  <ion-title><div class="n1">
+          <ion-button color="light" fill="outline"  size="default">
+      E-BICOS
+      </ion-button>
+      </div>
+      <div class="n2">
+      <ion-label >Cadastre-se gratuitamente! <br>É muito simples</ion-label>
+      </div></ion-title>
+</ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list-header>
+    <ion-label color ="danger">Formulario Template: Valido {{formulario.valid}}</ion-label>
+    </ion-list-header>
+    <form class="form" #formulario="ngForm" (ngSubmit)="onSubmitTemplate()">
+         <ion-list class="list1">
+         <ion-item >
+            <ion-icon name="person-outline"></ion-icon>
+            <ion-input mode="ios" clearInput="true" placeholder="Nome Completo" name="nome" required></ion-input>
+         </ion-item>
+         <ion-item >
+            <ion-icon name="transgender-outline"></ion-icon>
+            <ion-label>Gênero</ion-label>
+            <ion-select mode="ios"  interface="popover" placeholder="Selecionar">
+            <ion-select-option value="Masculino" >Masculino</ion-select-option>
+            <ion-select-option value="Feminino">Feminino</ion-select-option>
+            <ion-select-option value="Outro">Outro</ion-select-option>
+            </ion-select>
+         </ion-item>
+         <ion-item>
+            <ion-icon name="calendar-outline"></ion-icon>
+            <ion-datetime cancelText="Cancelar" doneText="Confirmar" mode="ios" displayFormat="DD MM YYYY" placeholder="Data Nascimento"></ion-datetime>
+         </ion-item>
+          <ion-item >
+            <ion-icon name="mail-outline"></ion-icon>
+            <ion-input clearInput="true" placeholder="E-mail"  pattern="^([a-z0-9._\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" type="email" name="email" [(ngModel)]="usuario.email" required></ion-input>
+         </ion-item>
+            <ion-item >
+            <ion-icon name="mail-outline"></ion-icon>
+            <ion-input clearInput="true" placeholder="Confirme o E-mail"  pattern="^([a-z0-9._\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" type="email" name="email" [(ngModel)]="usuario.email" required></ion-input>
+         </ion-item>
+         <ion-item >
+              <ion-icon name="lock-closed-outline"></ion-icon>
+             <ion-input  placeholder="Senha " type="password" name="password" [(ngModel)]="usuario.password" required></ion-input>
+         </ion-item>
+          <ion-item >
+              <ion-icon name="lock-closed-outline"></ion-icon>
+             <ion-input  placeholder="Confirme a senha" type="password" name="password" [(ngModel)]="usuario.password" required></ion-input>
+         </ion-item>
+         <ion-item >
+            <ion-icon name="card-outline"></ion-icon>
+            <ion-input clearInput="true" placeholder="CPF" name="cpf" required></ion-input>
+         </ion-item>
+         </ion-list>
+
+      <div class="n3" >
+        <button class="btnEntrar" type="submit" [disabled]="formulario.invalid" >
+        Concluir Cadastro
+        </button>
+       </div>
+    </form>
+
+</ion-content>
