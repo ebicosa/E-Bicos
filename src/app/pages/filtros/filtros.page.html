@@ -3,14 +3,14 @@
         <ion-buttons slot="start">
             <ion-back-button></ion-back-button>
         </ion-buttons>
-        <ion-title slot="start">
+        <ion-title slot="start" class="ion-no-padding ion-text-start ion-padding-start-2x">
             Filtros
         </ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <ion-item-group>
+    <ion-list>
         <ion-item lines="full">
             <ion-list-header>
                 <ion-label color="primary" class="labelHeader">
@@ -24,8 +24,8 @@
                 <ion-select-option *ngFor="let subcategoria of subcategorias" [value]="subcategoria">{{subcategoria.nome}}</ion-select-option>
             </ion-select>
         </ion-item>
-    </ion-item-group>
-    <ion-item-group>
+    </ion-list>
+    <ion-list>
         <ion-item lines="full">
             <ion-list-header>
                 <ion-label color="primary" class="labelHeader">
@@ -33,20 +33,28 @@
                 </ion-label>
             </ion-list-header>
         </ion-item>
-        <ion-item lines="none" class="ion-padding-start">
-            <ion-icon slot="start" icon="locate"> </ion-icon>
-            <ion-select placeholder="Selecione aqui">
-                <ion-select-option *ngFor="let estado of estados" [value]="estado">{{estado.nome}}</ion-select-option>
-            </ion-select>
-        </ion-item>
-        <ion-item lines="none" class="ion-padding-start">
-            <ion-icon slot="start" icon="locate"> </ion-icon>
-            <ion-select placeholder="Selecione aqui">
-                <ion-select-option *ngFor="let cidade of cidades" [value]="cidade">{{cidade.nome}}</ion-select-option>
-            </ion-select>
-        </ion-item>
-    </ion-item-group>
-    <ion-item-group>
+        <ion-list class="ion-padding-vertical ion-padding-start">
+            <ion-label color="medium" position="stacked" class="ion-text-center ion-padding-start-3x">
+                Estado</ion-label>
+            <ion-item lines="none">
+                <ion-icon slot="start" icon="location-outline"> </ion-icon>
+                <ion-select placeholder="Selecione aqui">
+                    <ion-select-option *ngFor="let estado of estados" [value]="estado">{{estado.nome}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+        </ion-list>
+        <ion-list class="ion-padding-start">
+            <ion-label color="medium" position="stacked" class="ion-text-center ion-padding-start-3x">
+                Cidade</ion-label>
+            <ion-item lines="none">
+                <ion-icon slot="start" icon="location-outline"> </ion-icon>
+                <ion-select placeholder="Selecione aqui">
+                    <ion-select-option *ngFor="let cidade of cidades" [value]="cidade">{{cidade.nome}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+        </ion-list>
+    </ion-list>
+    <ion-list>
         <ion-item lines="full">
             <ion-list-header>
                 <ion-label color="primary" class="labelHeader">
@@ -54,29 +62,29 @@
                 </ion-label>
             </ion-list-header>
         </ion-item>
-        <ion-item-group class="ion-padding-top">
-            <ion-label color="medium" position="stacked" class="ion-text-center">
+        <ion-list class="ion-padding-vertical ion-padding-start">
+            <ion-label color="medium" position="stacked" class="ion-text-center ion-padding-start-3x">
                 Faixa de Preço</ion-label>
-            <ion-item lines="none" class="ion-padding-start">
+            <ion-item lines="none">
                 <ion-icon slot="start" icon="pricetags"> </ion-icon>
                 <ion-select placeholder="Selecione aqui" icon="star">
                     <ion-select-option *ngFor="let faixaPreco of faixasPrecos" [value]="faixaPreco">R${{faixaPreco.minimo}},00 - R${{faixaPreco.maximo}},00</ion-select-option>
                 </ion-select>
             </ion-item>
-        </ion-item-group>
+        </ion-list>
 
 
 
-        <ion-item-group class="ion-padding-top">
-            <ion-label color="medium" position="stacked" class="ion-text-center">
+        <ion-list class="ion-padding-start">
+            <ion-label color="medium" position="stacked" class="ion-text-center ion-padding-start-3x">
                 Data da Postagem</ion-label>
-            <ion-item detail lines="none" class="ion-padding-start">
-                <ion-icon slot="start" icon="calendar"> </ion-icon>
-                <ion-datetime placeholder="Selecione uma data" min="2021" display-format="DD/MM/YYYY" picker-format="DD/MMMM/YYYY" dayShortNames="Dom, Seg, Ter, Qua, Qui, Sex, Sáb" dayNames="Domingo, Segunda, Terça, Quarta, Quinta, Sexta, Sábado" monthShortNames="Jan, Fev, Mar, Abr, Maio, Jun, Jul, Ago, Set, Out, Nov, Dez"
-                    monthNames="Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro"></ion-datetime>
+            <ion-item detail lines="none">
+                <ion-icon slot="start" icon="calendar-outline"> </ion-icon>
+                <ion-datetime placeholder="Selecione uma data" min="2021" display-format="DD/MM/YYYY" picker-format="DD/MMMM/YYYY " dayShortNames="Dom, Seg, Ter, Qua, Qui, Sex, Sáb " dayNames="Domingo, Segunda, Terça, Quarta, Quinta, Sexta, Sábado
+                " monthShortNames="Jan, Fev, Mar, Abr, Maio, Jun, Jul, Ago, Set, Out, Nov, Dez" monthNames="Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro "></ion-datetime>
             </ion-item>
-        </ion-item-group>
-    </ion-item-group>
+        </ion-list>
+    </ion-list>
 </ion-content>
 
 <ion-footer>
