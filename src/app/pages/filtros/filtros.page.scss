@@ -6,6 +6,15 @@ ion-footer {
     background: #f4f5f8;
 }
 
+.ion-padding-top {
+    padding-top: 10px;
+}
+
+.ion-padding-horizontal {
+    padding-left: 6px;
+    padding-right: 13px;
+}
+
 .ion-padding-start {
     padding-left: 22px;
 }
@@ -16,4 +25,9 @@ ion-footer {
 
 .ion-padding-start-3x {
     padding-left: 66px;
+}
+
+ion-img {
+    width: 80%;
+    color: black;
 }

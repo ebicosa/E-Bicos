@@ -18,9 +18,11 @@
                 </ion-label>
             </ion-list-header>
         </ion-item>
-        <ion-item lines="none" class="ion-padding-start">
-            <ion-icon slot="start" icon="construct"> </ion-icon>
-            <ion-select placeholder="Selecione aqui">
+        <ion-item lines="none" class="ion-padding-start ion-padding-top">
+            <div>
+                <ion-img src="../../assets/subcategoria.svg" class="ion-padding-horizontal"></ion-img>
+            </div>
+            <ion-select placeholder="Selecione aqui" [(ngModel)]="selected[0]" (ngModelChange)="selectChanged($event, $0)">
                 <ion-select-option *ngFor="let subcategoria of subcategorias" [value]="subcategoria">{{subcategoria.nome}}</ion-select-option>
             </ion-select>
         </ion-item>
@@ -37,8 +39,8 @@
             <ion-label color="medium" position="stacked" class="ion-text-center ion-padding-start-3x">
                 Estado</ion-label>
             <ion-item lines="none">
-                <ion-icon slot="start" icon="location-outline"> </ion-icon>
-                <ion-select placeholder="Selecione aqui">
+                <ion-icon slot="start" icon="location-outline"></ion-icon>
+                <ion-select placeholder="Selecione aqui" [(ngModel)]="selected[1]" (ngModelChange)="selectChanged($event, $1)">
                     <ion-select-option *ngFor="let estado of estados" [value]="estado">{{estado.nome}}</ion-select-option>
                 </ion-select>
             </ion-item>
@@ -47,8 +49,8 @@
             <ion-label color="medium" position="stacked" class="ion-text-center ion-padding-start-3x">
                 Cidade</ion-label>
             <ion-item lines="none">
-                <ion-icon slot="start" icon="location-outline"> </ion-icon>
-                <ion-select placeholder="Selecione aqui">
+                <ion-icon slot="start" icon="location-outline"></ion-icon>
+                <ion-select placeholder="Selecione aqui" [(ngModel)]="selected[2]" (ngModelChange)="selectChanged($event, $2)">
                     <ion-select-option *ngFor="let cidade of cidades" [value]="cidade">{{cidade.nome}}</ion-select-option>
                 </ion-select>
             </ion-item>
@@ -63,11 +65,12 @@
             </ion-list-header>
         </ion-item>
         <ion-list class="ion-padding-vertical ion-padding-start">
+
             <ion-label color="medium" position="stacked" class="ion-text-center ion-padding-start-3x">
                 Faixa de Preço</ion-label>
             <ion-item lines="none">
-                <ion-icon slot="start" icon="pricetags"> </ion-icon>
-                <ion-select placeholder="Selecione aqui" icon="star">
+                <ion-icon slot="start" icon="pricetags"></ion-icon>
+                <ion-select placeholder="Selecione aqui" [(ngModel)]="selected[3]" (ngModelChange)="selectChanged($event, $3)">
                     <ion-select-option *ngFor="let faixaPreco of faixasPrecos" [value]="faixaPreco">R${{faixaPreco.minimo}},00 - R${{faixaPreco.maximo}},00</ion-select-option>
                 </ion-select>
             </ion-item>
@@ -79,14 +82,14 @@
             <ion-label color="medium" position="stacked" class="ion-text-center ion-padding-start-3x">
                 Data da Postagem</ion-label>
             <ion-item detail lines="none">
-                <ion-icon slot="start" icon="calendar-outline"> </ion-icon>
-                <ion-datetime placeholder="Selecione uma data" min="2021" display-format="DD/MM/YYYY" picker-format="DD/MMMM/YYYY " dayShortNames="Dom, Seg, Ter, Qua, Qui, Sex, Sáb " dayNames="Domingo, Segunda, Terça, Quarta, Quinta, Sexta, Sábado
-                " monthShortNames="Jan, Fev, Mar, Abr, Maio, Jun, Jul, Ago, Set, Out, Nov, Dez" monthNames="Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro "></ion-datetime>
+                <ion-icon slot="start" icon="calendar"></ion-icon>
+                <ion-datetime placeholder="Selecione uma data" min="2021" display-format="DD/MM/YYYY" picker-format="DD/MMMM/YYYY " dayShortNames="Dom, Seg, Ter, Qua, Qui, Sex, Sáb" dayNames="Domingo, Segunda, Terça, Quarta, Quinta, Sexta, Sábado
+                " monthShortNames="Jan, Fev, Mar, Abr, Maio, Jun, Jul, Ago, Set, Out, Nov, Dez" monthNames="Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro" [(ngModel)]="selected[4]" (ngModelChange)="selectChanged($event, $4)"></ion-datetime>
             </ion-item>
         </ion-list>
     </ion-list>
 </ion-content>
 
 <ion-footer>
-    <ion-button color="primary" shape="round" expand="block">Filtrar</ion-button>
+    <ion-button color="primary" shape="round" expand="block" (click)="onFiltrar()">Filtrar</ion-button>
 </ion-footer>
