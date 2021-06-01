@@ -11,19 +11,19 @@
 
 <ion-content>
     <ion-list>
-        <ion-list-header>
-            <ion-item lines="none" class="ion-padding-top">
-                <ion-avatar slot="start">
+        <ion-list-header class="ion-no-padding">
+            <ion-item lines="none" class="ion-padding-vertical">
+                <ion-avatar slot="start" class="ion-no-margin">
                     <img src="../../assets/avatar.svg">
                 </ion-avatar>
-                <ion-label class="ion-padding-start labelHeader" color="primary">Aryelson Gonçalves Messias</ion-label>
+                <ion-label class="ion-padding-start labelHeader" color="primary">{{profile_name}}</ion-label>
             </ion-item>
         </ion-list-header>
 
         <ion-grid>
             <ion-row>
                 <ion-col>
-                    <ion-card>
+                    <ion-card (click)="onDadosPessoais($event)">
                         <ion-card-header>
                             <div>
                                 <ion-img src="../../assets/dados-pessoais.svg"></ion-img>
@@ -35,7 +35,7 @@
                     </ion-card>
                 </ion-col>
                 <ion-col>
-                    <ion-card>
+                    <ion-card (click)="onEndereco($event)">
                         <ion-card-header>
                             <div>
                                 <ion-img src="../../assets/endereco.svg"></ion-img>
@@ -49,7 +49,7 @@
             </ion-row>
             <ion-row>
                 <ion-col>
-                    <ion-card>
+                    <ion-card (click)="onMeusAnuncios($event)">
                         <ion-card-header>
                             <div>
                                 <ion-img src="../../assets/meus-anuncios.svg"></ion-img>
@@ -61,7 +61,7 @@
                     </ion-card>
                 </ion-col>
                 <ion-col>
-                    <ion-card>
+                    <ion-card (click)="onContatos($event)">
                         <ion-card-header>
                             <div>
                                 <ion-img src="../../assets/contatos.svg"></ion-img>
@@ -75,7 +75,7 @@
             </ion-row>
             <ion-row>
                 <ion-col>
-                    <ion-card>
+                    <ion-card (click)="onFavoritos($event)">
                         <ion-card-header>
                             <div>
                                 <ion-img src="../../assets/favoritos.svg"></ion-img>
@@ -87,7 +87,7 @@
                     </ion-card>
                 </ion-col>
                 <ion-col>
-                    <ion-card>
+                    <ion-card (click)="onCertificados($event)">
                         <ion-card-header>
                             <div>
                                 <ion-img src="../../assets/certificados.svg"></ion-img>

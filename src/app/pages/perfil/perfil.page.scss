@@ -1,5 +1,6 @@
 .labelHeader {
-    font-size: 14px;
+    font-size: initial;
+    white-space: pre-wrap;
 }
 
 ion-footer {
@@ -8,6 +9,10 @@ ion-footer {
 
 ion-toolbar {
     --min-height: 66px;
+}
+
+.ion-padding-vertical {
+    padding-top: 8px;
 }
 
 .ion-padding-start {
@@ -28,19 +33,22 @@ ion-avatar {
 }
 
 ion-img {
-    width: 48%;
+    width: fit-content;
 }
 
-ion-card-header>div,
-ion-card-content {
-    text-align: -webkit-center;
-    font-weight: bolder;
-    font-size: 11px;
-}
-
-ion-card-content {
-    padding: 0;
-    padding-bottom: 9px;
+ion-card {
+    margin-top: 0;
+    margin-bottom: auto;
+    div,
+    ion-card-content {
+        text-align: -webkit-center;
+        font-weight: bolder;
+        font-size: 11px;
+    }
+    ion-card-content {
+        padding: 0;
+        padding-bottom: 9px;
+    }
 }
 
 ion-label {
