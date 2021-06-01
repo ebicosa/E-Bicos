@@ -1,0 +1,48 @@
+.labelHeader {
+    font-size: 14px;
+}
+
+ion-footer {
+    background: #f4f5f8;
+}
+
+ion-toolbar {
+    --min-height: 66px;
+}
+
+.ion-padding-start {
+    padding-left: 14px;
+}
+
+.ion-padding-start-2x {
+    padding-left: 28px;
+}
+
+.ion-padding-start-3x {
+    padding-left: 42px;
+}
+
+ion-avatar {
+    width: 60px;
+    height: 60px;
+}
+
+ion-img {
+    width: 48%;
+}
+
+ion-card-header>div,
+ion-card-content {
+    text-align: -webkit-center;
+    font-weight: bolder;
+    font-size: 11px;
+}
+
+ion-card-content {
+    padding: 0;
+    padding-bottom: 9px;
+}
+
+ion-label {
+    font-weight: bolder;
+}
