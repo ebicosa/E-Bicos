@@ -34,7 +34,11 @@ const routes: Routes = [
   {
     path: 'servicos',
     loadChildren: () => import('./pages/servicos/servicos.module').then( m => m.ServicosPageModule)
+  },  {
+    path: 'busca',
+    loadChildren: () => import('./pages/busca/busca.module').then( m => m.BuscaPageModule)
   },
+
 
 
 ];
