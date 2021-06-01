@@ -1,0 +1,42 @@
+ion-content {
+    p {
+    font: 400 21px Arial, sans-serif;
+    text-align: center;
+  }
+
+  > div {
+    background: rgba(254, 14, 2, 0.79);
+    color: #fdf9f9;
+    border-radius: 6px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    span {
+      font: 700 18px Arial, sans-serif;
+    }
+  }
+}
+
+form {
+  padding: 40px;
+
+  ion-label {
+    font: 400 18px Arial, sans-serif;
+  }
+
+  ion-input {
+    border: 1px solid #000;
+    border-radius: 6px;
+  }
+
+  div {
+    margin-top: 30px;
+    border-top: 1px solid #000;
+
+    ion-button {
+      margin-top: 60px;
+    }
+  }
+}
