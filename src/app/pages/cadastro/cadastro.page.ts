@@ -7,10 +7,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cadastro.page.scss'],
 })
 export class CadastroPage implements OnInit {
+  genero:String = "";
+  public generos : Array<any> = [
+    { id: "M", text: "Masculino" },
+    { id: "F", text: "Feminino" },
+    { id: "O", text: "Outro" }
+  ]
 
+  onChange(event){
+    this.usuario.genero = (event.target.value);
+  }
   usuario  = {
+    nome: '',
+    genero:'',
     email: '',
-    password: ''
+    password: '',
+    cpf: ''
+
   };
 
   constructor(private navCtrl : NavController,

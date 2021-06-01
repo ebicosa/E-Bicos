@@ -22,9 +22,18 @@ const routes: Routes = [
   {
     path: 'filtros',
     loadChildren: () => import('./pages/filtros/filtros.module').then( m => m.FiltrosPageModule)
-  },  {
+  },
+  {
     path: 'recuperar-senha',
     loadChildren: () => import('./pages/recuperar-senha/recuperar-senha.module').then( m => m.RecuperarSenhaPageModule)
+  },
+  {
+    path: 'perfil',
+    loadChildren: () => import('./pages/perfil/perfil.module').then( m => m.PerfilPageModule)
+  },
+  {
+    path: 'servicos',
+    loadChildren: () => import('./pages/servicos/servicos.module').then( m => m.ServicosPageModule)
   },
 
 
