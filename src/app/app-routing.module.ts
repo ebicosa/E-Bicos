@@ -22,7 +22,11 @@ const routes: Routes = [
   {
     path: 'filtros',
     loadChildren: () => import('./pages/filtros/filtros.module').then( m => m.FiltrosPageModule)
+  },  {
+    path: 'perfil',
+    loadChildren: () => import('./pages/perfil/perfil.module').then( m => m.PerfilPageModule)
   },
+
 
 ];
 
