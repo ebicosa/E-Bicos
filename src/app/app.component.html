@@ -1,3 +1,38 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-menu contentId="main-content" type="overlay">
+    <ion-content color="primary">
+      <ion-item lines="none" class="ion-padding-vertical" color="primary">
+        <ion-avatar slot="start" class="ion-no-margin">
+          <img src="../../assets/avatar.svg">
+        </ion-avatar>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-label class="ion-padding-start labelHeader">{{nome_de_perfil}}</ion-label>
+            </ion-col>
+            <ion-col>
+              <ion-label class="ion-padding-start labelHeader">{{e_mail}}</ion-label>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+
+      <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
+        <ion-item color="primary" routerDirection="root" [routerLink]="[p.url]" detail="false" routerLinkActive="selected" [lines]="p.icon != '' ? 'full' : 'none'">
+          <ion-icon slot="start" [name]="p.icon" *ngIf="p.icon != ''"></ion-icon>
+          <ion-label [class]="p.icon != '' ? 'labelMenuLarge' : 'labelMenuSmall'">{{ p.title }}</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+    </ion-content>
+
+    <ion-footer>
+      <ion-menu-toggle auto-hide="false">
+        <ion-item color="primary" routerDirection="root" routerLink="home" detail="false" routerLinkActive="selected" lines=none>
+          <ion-icon slot="start" name="log-out-outline"></ion-icon>
+          <ion-label class=labelMenuLarge>Sair</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+    </ion-footer>
+  </ion-menu>
+  <ion-router-outlet id="main-content"></ion-router-outlet>
 </ion-app>
