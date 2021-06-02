@@ -1,9 +1,108 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>busca</ion-title>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-searchbar placeholder="Faça aqui a sua busca" color="light"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-segment [(ngModel)]="opcaoSelecionada">
+    <ion-segment-button value="localizacao">
+      <ion-img src="../../assets/icon/localizacao.svg"></ion-img>
+      <ion-label>Buscar por Localização</ion-label>
+    </ion-segment-button>
 
+    <ion-segment-button value="categorias">
+      <ion-img src="../../assets/icon/categorias.svg"></ion-img>
+      <ion-label>Buscar por Categorias</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <div [ngSwitch]="opcaoSelecionada">
+    <ion-list *ngSwitchCase="'categorias'">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6">
+            <ion-card (click)="alert('Em construção')">
+              <ion-img src="../../assets/controle-pragas.svg"></ion-img>
+              <ion-label>Controle de pragas</ion-label>
+            </ion-card>
+          </ion-col>
+
+          <ion-col size="6">
+            <ion-card (click)="alert('Em construção')">
+                <ion-img src="../../assets/aulas-reforco.svg"></ion-img>
+                <ion-label>Aulas de reforço</ion-label>
+            </ion-card>
+          </ion-col>
+
+          <ion-col size="6">
+            <ion-card (click)="alert('Em construção')">
+              <ion-img src="../../assets/eventos.svg"></ion-img>
+              <ion-label>Eventos</ion-label>
+            </ion-card>
+          </ion-col>
+
+          <ion-col size="6">
+            <ion-card (click)="alert('Em construção')">
+                <ion-img src="../../assets/servicos-domesticos.svg"></ion-img>
+                <ion-label>Serviços Domésticos</ion-label>
+            </ion-card>
+          </ion-col>
+
+          <ion-col size="6">
+            <ion-card (click)="alert('Em construção')">
+              <ion-img src="../../assets/automoveis.svg"></ion-img>
+              <ion-label>Automóveis</ion-label>
+            </ion-card>
+          </ion-col>
+
+          <ion-col size="6">
+            <ion-card (click)="alert('Em construção')">
+                <ion-img src="../../assets/assistencia-tecnica.svg"></ion-img>
+                <ion-label>Assistência Técnica</ion-label>
+            </ion-card>
+          </ion-col>
+
+          <ion-col size="6">
+            <ion-card (click)="alert('Em construção')">
+              <ion-img src="../../assets/construcao-civil.svg"></ion-img>
+              <ion-label>Construção Civil</ion-label>
+            </ion-card>
+          </ion-col>
+
+          <ion-col size="6">
+            <ion-card (click)="alert('Em construção')">
+                <ion-img src="../../assets/programacao.svg"></ion-img>
+                <ion-label>Programação</ion-label>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-list>
+
+    <ion-list id="listLocalizacao" *ngSwitchCase="'localizacao'">
+      <ion-label>Estado:</ion-label>
+      <ion-select placeholder="Selecione aqui"(ionChange)="selectChanged($event)">
+        <ion-select-option
+          *ngFor="let estado of estados"
+          [value]="estado"
+          >
+          {{ estado.nome }}
+        </ion-select-option>
+      </ion-select>
+
+      <ion-label>Cidade:</ion-label>
+      <ion-select placeholder="Selecione aqui">
+        <ion-select-option
+          *ngFor="let cidade of cidades"
+          [value]="cidade"
+        >
+          {{ cidade }}
+        </ion-select-option>
+      </ion-select>
+    </ion-list>
+  </div>
 </ion-content>
