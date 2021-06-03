@@ -38,6 +38,10 @@ const routes: Routes = [
     path: 'busca',
     loadChildren: () => import('./pages/busca/busca.module').then( m => m.BuscaPageModule)
   },
+  {
+    path: 'central-ajuda',
+    loadChildren: () => import('./pages/central-ajuda/central-ajuda.module').then( m => m.CentralAjudaPageModule)
+  },
 
 
 
