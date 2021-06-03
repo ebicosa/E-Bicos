@@ -5,3 +5,50 @@
 .ion-padding-start-3x {
     padding-left: 66px;
 }
+
+.ion-margin-vertical {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+h5 {
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+h5+ion-label {
+    margin-top: 0;
+}
+
+ion-item {
+    ion-input {
+        --padding-start: 16px;
+        border: 1px solid;
+        border-radius: 10px;
+        padding-top: 16px;
+        padding-bottom: 16px;
+    }
+}
+
+ion-img {
+    width: fit-content;
+}
+
+ion-card {
+    margin-top: 0;
+    margin-bottom: auto;
+    div,
+    ion-card-content {
+        text-align: -webkit-center;
+        font-weight: bolder;
+        font-size: 11px;
+    }
+    ion-card-content {
+        padding: 0;
+        padding-bottom: 9px;
+    }
+}
+
+ion-label {
+    font-weight: bolder;
+}

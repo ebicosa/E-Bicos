@@ -9,5 +9,93 @@
     </ion-toolbar>
 </ion-header>
 <ion-content>
+    <ion-list>
+        <ion-item lines="none" class="ion-margin-top">
+            <h5>
+                Como podemos te ajudar?
+            </h5>
+        </ion-item>
+        <ion-item lines="full">
+            <ion-input placeholder="Ex: Como excluir minha conta?" class="ion-margin-vertical"></ion-input>
+        </ion-item>
+        <ion-item lines="none">
+            <h5>
+                Não quer pesquisar?
+            </h5>
+            <ion-label position="stacked" color="medium">
+                Procure aqui sua dúvida ou problema
+            </ion-label>
+        </ion-item>
 
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <ion-card (click)="onMinhaConta($event)">
+                        <ion-card-header>
+                            <div>
+                                <ion-img src="../../assets/minha-conta.svg"></ion-img>
+                            </div>
+                        </ion-card-header>
+                        <ion-card-content>
+                            <ion-label>Minha Conta</ion-label>
+                        </ion-card-content>
+                    </ion-card>
+                </ion-col>
+                <ion-col>
+                    <ion-card (click)="onAnuncios($event)">
+                        <ion-card-header>
+                            <div>
+                                <ion-img src="../../assets/anuncios.svg"></ion-img>
+                            </div>
+                        </ion-card-header>
+                        <ion-card-content>
+                            <ion-label>Anúncios</ion-label>
+                        </ion-card-content>
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+
+                <ion-col>
+                    <ion-card (click)="onSobre($event)">
+                        <ion-card-header>
+                            <div>
+                                <ion-img src="../../assets/sobre.svg"></ion-img>
+                            </div>
+                        </ion-card-header>
+                        <ion-card-content>
+                            <ion-label>Sobre o E-BICOS</ion-label>
+                        </ion-card-content>
+                    </ion-card>
+                </ion-col>
+                <ion-col>
+                    <ion-card (click)="onRegras($event)">
+                        <ion-card-header>
+                            <div>
+                                <ion-img src="../../assets/regras.svg"></ion-img>
+                            </div>
+                        </ion-card-header>
+                        <ion-card-content>
+                            <ion-label>Regras</ion-label>
+                        </ion-card-content>
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col offset="3" size="6">
+                    <ion-card (click)="onSeguranca($event)">
+                        <ion-card-header>
+                            <div>
+                                <ion-img src="../../assets/seguranca.svg"></ion-img>
+                            </div>
+                        </ion-card-header>
+                        <ion-card-content>
+                            <ion-label>Seguranca</ion-label>
+                        </ion-card-content>
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-list>
 </ion-content>

@@ -12,4 +12,24 @@ export class CentralAjudaPage implements OnInit {
   ngOnInit() {
   }
 
+  onMinhaConta(obj){
+    alert("Tela ainda em construção!");
+  }
+
+  onAnuncios(obj){
+    alert("Tela ainda em construção!");
+  }
+
+  onSobre(obj){
+    alert("Tela ainda em construção!");
+  }
+
+  onRegras(obj){
+    alert("Tela ainda em construção!");
+  }
+
+  onSeguranca(obj){
+    alert("Tela ainda em construção!");
+  }
+
 }
