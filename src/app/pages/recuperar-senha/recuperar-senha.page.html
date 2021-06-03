@@ -1,33 +1,27 @@
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-    <ion-title>Recuperar Senha</ion-title>
-  </ion-toolbar>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button text="" mode="md"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Recuperar Senha</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <p>Insira o seu e-mail de cadastro e enviaremos instruções para você</p>
+    <p>Insira o seu e-mail de cadastro e enviaremos instruções para você</p>
 
-  <div>
-    <span color="danger">Esqueci meu usuário ou senha</span>
-  </div>
-
-  <form #formulario="ngForm" (ngSubmit)="onSubmitTemplate()">
-    <ion-label>E-mail</ion-label>
-    <ion-input
-      name="email"
-      type="email"
-      pattern="^([a-z0-9._\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
-      [(ngModel)]="usuario.email"
-      required
-    ></ion-input>
-
-    <div class="buttonContainer">
-      <ion-button expand="block" type="submit" [disabled]="formulario.invalid">
-        Receber instruções
-      </ion-button>
+    <div>
+        <span color="danger">Esqueci meu usuário ou senha</span>
     </div>
-  </form>
+
+    <form #formulario="ngForm" (ngSubmit)="onSubmitTemplate()">
+        <ion-label>E-mail</ion-label>
+        <ion-input name="email" type="email" pattern="^([a-z0-9._\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" [(ngModel)]="usuario.email" required></ion-input>
+
+        <div class="buttonContainer">
+            <ion-button expand="block" type="submit" [disabled]="formulario.invalid">
+                Receber instruções
+            </ion-button>
+        </div>
+    </form>
 </ion-content>
