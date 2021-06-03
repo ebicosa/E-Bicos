@@ -7,8 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PerfilPage implements OnInit {
 
-  profile_name = "Victor Emanuel";
-  constructor() { }
+  private profile_name:string;
+
+  constructor() { 
+    if (localStorage.getItem("profile_name") === null){
+      this.profile_name = "Victor Emanuel";
+      localStorage.setItem("profile_name", this.profile_name);
+    }
+    else{
+      this.profile_name = localStorage.getItem("profile_name");
+    }
+  }
 
   ngOnInit() {
   }
