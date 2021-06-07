@@ -10,7 +10,7 @@ export class AppComponent {
   e_mail = "nome.sobrenome@servidor.com";
 
   public appPages = [
-    { title: 'Postar serviço', url: '', icon: 'briefcase-outline' },
+    { title: 'Postar serviço', url: 'inserir-servico', icon: 'briefcase-outline' },
     { title: 'Minha conta', url: 'perfil', icon: 'person-circle-outline' },
     { title: 'Favoritos', url: '', icon: 'heart-outline' },
     { title: 'Central de ajuda', url: 'central-ajuda', icon: '' },

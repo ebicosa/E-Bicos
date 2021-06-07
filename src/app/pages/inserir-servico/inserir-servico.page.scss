@@ -1,0 +1,64 @@
+.ion-padding-start {
+    --padding-start: 2px;
+    padding-inline-start: 8px;
+}
+
+.ion-padding-start-2x {
+    padding-left: 44px;
+}
+
+.ion-padding-start-3x {
+    padding-left: 66px;
+}
+
+.ion-padding-vertical-2x {
+    padding-top: 32px;
+    padding-bottom: 32px;
+}
+
+.ion-padding-vertical-3x {
+    padding-top: 48px;
+    padding-bottom: 48px;
+}
+
+h5 {
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+h5+ion-label {
+    margin-top: 0;
+}
+
+ion-item-group {
+    ion-input,
+    ion-textarea {
+        --padding-start: 16px;
+        border: 1px solid;
+        border-radius: 10px;
+        padding-top: 16px;
+        padding-bottom: 16px;
+    }
+}
+
+ion-item {
+    --padding-end: 0px;
+    --inner-padding-end: 0px;
+    div {
+        padding: 0px;
+        width: 100%;
+        background-image: url('../../../assets/inserir_foto_bg2.jpg');
+        background-size: cover;
+        background-attachment: fixed;
+        ion-item-group {
+            font-weight: bolder;
+            text-align: -webkit-center;
+            ion-img {
+                width: fit-content;
+            }
+            ion-label {
+                font-weight: bolder;
+            }
+        }
+    }
+}

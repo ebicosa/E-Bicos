@@ -1,0 +1,79 @@
+<ion-header mode="ios">
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button text="" mode="md" defaultHref="servicos"></ion-back-button>
+        </ion-buttons>
+        <ion-title slot="start" class="ion-text-start ion-padding-start-3x">
+            Inserir Anúncio
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-list>
+        <ion-item lines="none" class="ion-no-padding">
+            <div>
+                <ion-item-group lines="none" class="ion-padding-vertical-3x" (click)="selectImage()">
+                    <ion-img src="../../assets/camera.svg" class="ion-padding-horizontal"></ion-img>
+                    <ion-label color="primary">Inserir Foto</ion-label>
+                </ion-item-group>
+            </div>
+        </ion-item>
+        <ion-item-group>
+            <ion-item lines="none">
+                <h5>
+                    Título do anúncio *
+                </h5>
+            </ion-item>
+            <ion-item lines="full" class="ion-padding-horizontal">
+                <ion-input placeholder="Ex: Procurando por pedreiro" class="ion-margin-vertical" required></ion-input>
+            </ion-item>
+        </ion-item-group>
+
+        <ion-item-group>
+            <ion-item lines="none">
+                <h5>
+                    Descrição
+                </h5>
+            </ion-item>
+            <ion-item lines="full" class="ion-padding-horizontal">
+                <ion-textarea rows="6" cols="20" placeholder="Ex: Ex: Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet." class="ion-margin-vertical"></ion-textarea>
+            </ion-item>
+        </ion-item-group>
+
+        <ion-item-group>
+            <ion-item lines="none">
+                <h5>
+                    Categoria
+                </h5>
+            </ion-item>
+            <ion-item lines="full" class="ion-padding-horizontal">
+                <ion-select placeholder="Selecione aqui"></ion-select>
+            </ion-item>
+        </ion-item-group>
+
+        <ion-item-group>
+            <ion-item lines="none">
+                <h5>
+                    Subcategoria
+                </h5>
+            </ion-item>
+            <ion-item lines="full" class="ion-padding-horizontal">
+                <ion-select placeholder="Selecione aqui"></ion-select>
+            </ion-item>
+        </ion-item-group>
+
+        <ion-item-group>
+            <ion-item lines="none">
+                <h5>
+                    Valor do pagamento
+                </h5>
+            </ion-item>
+            <ion-item lines="full" class="ion-padding-horizontal">
+                <ion-select placeholder="Selecione aqui"></ion-select>
+            </ion-item>
+        </ion-item-group>
+
+
+
+    </ion-list>
+</ion-content>

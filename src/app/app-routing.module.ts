@@ -50,6 +50,10 @@ const routes: Routes = [
     path: 'endereco',
     loadChildren: () => import('./pages/endereco/endereco.module').then( m => m.EnderecoPageModule)
   },
+  {
+    path: 'inserir-servico',
+    loadChildren: () => import('./pages/inserir-servico/inserir-servico.module').then( m => m.InserirServicoPageModule)
+  },
 
 
 
