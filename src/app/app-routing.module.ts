@@ -42,6 +42,14 @@ const routes: Routes = [
     path: 'central-ajuda',
     loadChildren: () => import('./pages/central-ajuda/central-ajuda.module').then( m => m.CentralAjudaPageModule)
   },
+  {
+    path: 'meus-dados',
+    loadChildren: () => import('./pages/meus-dados/meus-dados.module').then( m => m.MeusDadosPageModule)
+  },
+  {
+    path: 'endereco',
+    loadChildren: () => import('./pages/endereco/endereco.module').then( m => m.EnderecoPageModule)
+  },
 
 
 

@@ -1,0 +1,42 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button text="" mode="md"></ion-back-button>
+        </ion-buttons>
+    <ion-title>Meus Dados</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+ <ion-list class="list1">
+        <ion-item>
+            <ion-icon name="transgender-outline"></ion-icon>
+            <ion-label>Gênero</ion-label>
+            <ion-select [placeholder]="genero" [(ngModel)]="genero" (ionChange)="onChange($event)" nome="genero" mode="ios" interface="popover" >
+                <ion-select-option *ngFor="let item of generos" [value]="item.id">{{ item.text}}</ion-select-option>
+            </ion-select>
+        </ion-item>
+    </ion-list>
+  <form #formulario="ngForm" (ngSubmit)="onSubmitTemplate()">
+        <ion-list>
+            <ion-item>
+                <ion-icon name="person-outline"></ion-icon>
+                <ion-input [(ngModel)]="usuario.nome" mode="ios" clearInput="true"  name="nome" required></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-icon name="calendar-outline"></ion-icon>
+                <ion-datetime cancelText="Cancelar" doneText="Confirmar" mode="ios" displayFormat="DD/MM/YYYY" [value]="usuario.data"></ion-datetime>
+            </ion-item>
+            <ion-item>
+                <ion-icon name="card-outline"></ion-icon>
+                <ion-input mode="ios" clearInput="true" placeholder="CPF" name="cpf" [(ngModel)]="usuario.cpf" required></ion-input>
+            </ion-item>
+        </ion-list>
+
+        <div class="n3">
+            <button class="btnEntrar" type="submit" [disabled]="formulario.invalid">
+        Salvas Alterações
+        </button>
+        </div>
+    </form>
+</ion-content>

@@ -1,0 +1,48 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button text="" mode="md"></ion-back-button>
+        </ion-buttons>
+    <ion-title>Meus Dados</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list >
+        <ion-item lines="inset">
+            <ion-label position="floating">Cep*</ion-label>
+            <ion-input (click)="Cep()" maxlength="8" type="tel" [(ngModel)]="endereco.CEP" (ionChange)="onChangeCEP($event)" required></ion-input>
+        </ion-item>
+    </ion-list>
+    <ion-list>
+        <ion-item lines="inset">
+            <ion-label position="floating">Rua*</ion-label>
+            <ion-input [(ngModel)]="endereco.Rua" (ionChange)="onChangeRua($event)" required></ion-input>
+        </ion-item>
+    </ion-list>
+    <ion-list >
+        <ion-item lines="inset">
+            <ion-label position="floating">Número</ion-label>
+            <ion-input type="number" [(ngModel)]="endereco.numero" (ionChange)="onChangeNumero($event)"></ion-input>
+        </ion-item>
+    </ion-list>
+    <ion-list >
+        <ion-item lines="inset">
+            <ion-label position="floating">Bairro*</ion-label>
+            <ion-input id="bairro"  [(ngModel)]="endereco.Bairro" (ionChange)="onChangeBairro($event)" required ></ion-input>
+        </ion-item>
+    </ion-list>
+     <ion-list >
+        <ion-item lines="inset">
+            <ion-label position="floating">Complemento</ion-label>
+            <ion-input  [(ngModel)]="endereco.complemento" (ionChange)="onChangeComplemento($event)"></ion-input>
+        </ion-item>
+    </ion-list>
+
+       <div class="n3">
+            <button (click)="teste()" class="btnEntrar">
+            Concluir Cadastro
+            </button>
+        </div>
+
+</ion-content>

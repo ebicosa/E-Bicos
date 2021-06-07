@@ -8,7 +8,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CadastroPage implements OnInit {
 
-
   genero:String = "";
   public generos : Array<any> = [
     { id: "M", text: "Masculino" },
@@ -19,9 +18,11 @@ export class CadastroPage implements OnInit {
   onChange(event){
     this.usuario.genero = (event.target.value);
   }
+
   usuario  = {
     nome: '',
     genero:'',
+    data: '',
     email: '',
     password: '',
     cpf: ''
