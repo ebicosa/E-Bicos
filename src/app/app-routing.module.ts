@@ -62,6 +62,10 @@ const routes: Routes = [
     path: 'quem-somos',
     loadChildren: () => import('./pages/quem-somos/quem-somos.module').then( m => m.QuemSomosPageModule)
   },
+  {
+    path: 'termos-de-uso',
+    loadChildren: () => import('./pages/termos-de-uso/termos-de-uso.module').then( m => m.TermosDeUsoPageModule)
+  },
 
 
 
