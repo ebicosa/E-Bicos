@@ -41,12 +41,12 @@
         </ion-item-group>
 
         <ion-item-group>
-            <ion-item lines="none">
+            <ion-item lines="none" class="">
                 <h5>
                     Categoria
                 </h5>
             </ion-item>
-            <ion-item lines="full" class="ion-padding-horizontal">
+            <ion-item lines="full" class="ion-padding-horizontal ion-padding-bottom select-item">
                 <ion-select placeholder="Selecione aqui"></ion-select>
             </ion-item>
         </ion-item-group>
@@ -57,7 +57,7 @@
                     Subcategoria
                 </h5>
             </ion-item>
-            <ion-item lines="full" class="ion-padding-horizontal">
+            <ion-item lines="full" class="ion-padding-horizontal ion-padding-bottom select-item">
                 <ion-select placeholder="Selecione aqui"></ion-select>
             </ion-item>
         </ion-item-group>
@@ -68,12 +68,19 @@
                     Valor do pagamento
                 </h5>
             </ion-item>
-            <ion-item lines="full" class="ion-padding-horizontal">
-                <ion-select placeholder="Selecione aqui"></ion-select>
+            <ion-item lines="none" class="ion-padding-horizontal ion-padding-bottom select-item">
+                <ion-select placeholder="Selecione aqui" class="ion-no-padding ion-padding-horizontal padding-vertical"></ion-select>
             </ion-item>
         </ion-item-group>
 
-
+        <ion-item-group>
+            <ion-item lines="none" class="ion-no-padding ion-padding-vertical">
+                <ion-button expand="block" color="success" class="ion-text-center ion-padding-horizontal" (click)="onPostar()">Postar</ion-button>
+            </ion-item>
+            <h6 class="ion-no-margin ion-margin-bottom ion-padding-bottom ion-padding-start">Ao publicar você concorda e aceita nossos
+                <p class="ion-no-margin"><a href="">Termos de Uso</a> e <a href="">Privacidade </a></p>
+            </h6>
+        </ion-item-group>
 
     </ion-list>
 </ion-content>

@@ -40,21 +40,21 @@ export class InserirServicoPage implements OnInit {
   
     async selectImage() {
       const actionSheet = await this.actionSheetController.create({
-        header: "Select Image source",
+        header: "Selecione uma opção",
         buttons: [{
-          text: 'Load from Library',
+          text: 'Carregar foto da galeria',
           handler: () => {
             this.pickImage(this.camera.PictureSourceType.PHOTOLIBRARY);
           }
         },
         {
-          text: 'Use Camera',
+          text: 'Usar Câmera',
           handler: () => {
             this.pickImage(this.camera.PictureSourceType.CAMERA);
           }
         },
         {
-          text: 'Cancel',
+          text: 'Cancelar',
           role: 'cancel'
         }
         ]
@@ -63,6 +63,9 @@ export class InserirServicoPage implements OnInit {
     }
 
 
+    onPostar(){
+      alert("Postado com sucesso!");
+    }
 
   ngOnInit() {
   }
