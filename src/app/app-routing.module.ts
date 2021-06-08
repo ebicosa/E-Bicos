@@ -54,6 +54,10 @@ const routes: Routes = [
     path: 'inserir-servico',
     loadChildren: () => import('./pages/inserir-servico/inserir-servico.module').then( m => m.InserirServicoPageModule)
   },
+  {
+    path: 'contatos',
+    loadChildren: () => import('./pages/contatos/contatos.module').then( m => m.ContatosPageModule)
+  },
 
 
 

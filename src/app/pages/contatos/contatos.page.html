@@ -1,0 +1,42 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button text="" mode="md"></ion-back-button>
+        </ion-buttons>
+    <ion-title>Contatos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <form class="form" #formulario="ngForm" (ngSubmit)="onSubmitTemplate()">
+        <ion-list>
+            <ion-item>
+                <ion-icon name="person-outline"></ion-icon>
+                <ion-input [value]="usuario.email" mode="ios" clearInput="true"  name="email" disabled="true"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-icon name="mail-outline"></ion-icon>
+                <ion-input [(ngModel)]="usuario.emailSec" name="emailSec" clearInput="true" placeholder="exemple@gmail.com" pattern="^([aA-zZ0-9._\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" type="email" ></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-icon name="logo-instagram"></ion-icon>
+                <ion-input mode="ios" clearInput="true" placeholder="@user_teste" name="instagram" [(ngModel)]="usuario.insta"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-icon name="phone-portrait-outline"></ion-icon>
+                <ion-input type="number" mode="ios" clearInput="true" placeholder="(00) 00000-0000 " name="celular" [(ngModel)]="usuario.celular" ></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-icon name="call-outline"></ion-icon>
+                <ion-input type="number"  mode="ios" clearInput="true" placeholder="(00) 0000-0000" name="fixo" [(ngModel)]="usuario.fixo" ></ion-input>
+            </ion-item>
+        </ion-list>
+
+        <div class="n3">
+            <button class="btnEntrar" type="submit" >
+        Salvas Alterações
+        </button>
+        </div>
+    </form>
+</ion-content>

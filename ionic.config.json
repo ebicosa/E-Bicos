@@ -1,5 +1,7 @@
 {
   "name": "E-BICOS",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

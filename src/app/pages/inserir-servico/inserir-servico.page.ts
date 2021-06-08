@@ -39,8 +39,8 @@ export class InserirServicoPage implements OnInit {
       this.subcategorias=JSON.parse(localStorage.getItem("subcategorias"));
       this.categorias=JSON.parse(localStorage.getItem("categorias"));
   }
-    
-  
+
+
     pickImage(sourceType) {
       const options: CameraOptions = {
         quality: 100,
@@ -56,7 +56,7 @@ export class InserirServicoPage implements OnInit {
         // Handle error
       });
     }
-  
+
     async selectImage() {
       const actionSheet = await this.actionSheetController.create({
         header: "Selecione uma opção",

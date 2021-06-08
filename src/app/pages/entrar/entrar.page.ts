@@ -39,8 +39,7 @@ export class EntrarPage implements OnInit {
   onSubmitTemplate(){
     console.log('Form submit');
     console.log(this.usuario);
-    this.alert()
-
+    this.navCtrl.navigateForward("servicos");
   }
 
   async alert(){

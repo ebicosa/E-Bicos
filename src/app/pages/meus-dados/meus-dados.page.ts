@@ -7,7 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MeusDadosPage implements OnInit {
 
-  genero:String = "Masculino";
   public generos : Array<any> = [
     { id: "M", text: "Masculino" },
     { id: "F", text: "Feminino" },
@@ -23,7 +22,7 @@ export class MeusDadosPage implements OnInit {
   usuario  = {
     nome: 'Usuario teste',
     genero:'Masculino',
-    data: '2012-12-15T13:47:20.789',
+    data: '2013-12-15T13:47:20.789',
     cpf: '135.135.135-55'
 
   };
