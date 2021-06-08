@@ -58,6 +58,10 @@ const routes: Routes = [
     path: 'contatos',
     loadChildren: () => import('./pages/contatos/contatos.module').then( m => m.ContatosPageModule)
   },
+  {
+    path: 'quem-somos',
+    loadChildren: () => import('./pages/quem-somos/quem-somos.module').then( m => m.QuemSomosPageModule)
+  },
 
 
 
