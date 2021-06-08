@@ -55,10 +55,13 @@ export class ServicosPage implements OnInit {
   constructor(private navCtrl : NavController) { }
 
   ngOnInit() {
+    if(!(localStorage.getItem("nova_postagem") === null)){
+      this.cards.push(JSON.parse(localStorage.getItem("nova_postagem")));
+    }
   }
 
   showPageFiltros() {
-    this.navCtrl.navigateForward('filtros')
+    this.navCtrl.navigateForward('filtros');
   }
 
   alteraFavorito(card : any) {

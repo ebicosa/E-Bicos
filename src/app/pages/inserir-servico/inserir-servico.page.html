@@ -25,7 +25,7 @@
                 </h5>
             </ion-item>
             <ion-item lines="full" class="ion-padding-horizontal">
-                <ion-input placeholder="Ex: Procurando por pedreiro" class="ion-margin-vertical" required></ion-input>
+                <ion-input [(ngModel)]="inputs[0]" placeholder="Ex: Procurando por pedreiro" class="ion-margin-vertical" required></ion-input>
             </ion-item>
         </ion-item-group>
 
@@ -36,18 +36,20 @@
                 </h5>
             </ion-item>
             <ion-item lines="full" class="ion-padding-horizontal">
-                <ion-textarea rows="6" cols="20" placeholder="Ex: Ex: Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet." class="ion-margin-vertical"></ion-textarea>
+                <ion-textarea [(ngModel)]="inputs[1]" rows="6" cols="20" placeholder="Ex: Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet." class="ion-margin-vertical"></ion-textarea>
             </ion-item>
         </ion-item-group>
 
         <ion-item-group>
-            <ion-item lines="none" class="">
+            <ion-item lines="none">
                 <h5>
                     Categoria
                 </h5>
             </ion-item>
             <ion-item lines="full" class="ion-padding-horizontal ion-padding-bottom select-item">
-                <ion-select placeholder="Selecione aqui"></ion-select>
+                <ion-select [(ngModel)]="inputs[2]" (ngModelChange)="onChange($event, 2)" placeholder="Selecione aqui">
+                    <ion-select-option *ngFor="let categoria of categorias;" [value]="categoria.nome">{{categoria.nome}}</ion-select-option>
+                </ion-select>
             </ion-item>
         </ion-item-group>
 
@@ -58,7 +60,9 @@
                 </h5>
             </ion-item>
             <ion-item lines="full" class="ion-padding-horizontal ion-padding-bottom select-item">
-                <ion-select placeholder="Selecione aqui"></ion-select>
+                <ion-select [(ngModel)]="inputs[3]" (ngModelChange)="onChange($event, 3)" placeholder="Selecione aqui">
+                    <ion-select-option *ngFor="let subcategoria of subcategorias;" [value]="subcategoria.nome">{{subcategoria.nome}}</ion-select-option>
+                </ion-select>
             </ion-item>
         </ion-item-group>
 
@@ -69,7 +73,10 @@
                 </h5>
             </ion-item>
             <ion-item lines="none" class="ion-padding-horizontal ion-padding-bottom select-item">
-                <ion-select placeholder="Selecione aqui" class="ion-no-padding ion-padding-horizontal padding-vertical"></ion-select>
+
+                <ion-select [(ngModel)]="inputs[4]" (ngModelChange)="onChange($event, 4)" placeholder="Selecione aqui" class="ion-no-padding ion-padding-horizontal padding-vertical">
+                    <ion-select-option *ngFor="let faixaPreco of faixasPrecos;" [value]="faixaPreco">R${{faixaPreco.minimo}},00 - R${{faixaPreco.maximo}},00</ion-select-option>
+                </ion-select>
             </ion-item>
         </ion-item-group>
 

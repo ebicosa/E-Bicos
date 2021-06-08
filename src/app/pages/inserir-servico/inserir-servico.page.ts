@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/Camera/ngx';
 import { File } from '@ionic-native/file/ngx';
-import { ActionSheetController } from '@ionic/angular';
+import { ActionSheetController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-inserir-servico',
@@ -10,6 +10,10 @@ import { ActionSheetController } from '@ionic/angular';
 })
 export class InserirServicoPage implements OnInit {
 
+  faixasPrecos;
+  categorias;
+  subcategorias;
+  inputs = ['', '', '', '', ''];
   croppedImagePath = "";
   isLoading = false;
 
@@ -20,7 +24,22 @@ export class InserirServicoPage implements OnInit {
 
   constructor(private camera: Camera,
     public actionSheetController: ActionSheetController,
-    private file: File) {}
+    private file: File,
+    private navCtrl : NavController) {
+      if(localStorage.getItem("categorias") === null){
+        localStorage.setItem("categorias", JSON.stringify([{nome: "Construção Civil"},{nome: "Serviços domésticos"}]));
+      }
+      if(localStorage.getItem("subcategorias") === null){
+        localStorage.setItem("subcategorias", JSON.stringify([{nome: "Eletricista"},{nome: "Encanador"}]));
+      }
+      if(localStorage.getItem("faixasPrecos") === null){
+        localStorage.setItem("faixasPrecos", JSON.stringify( [{minimo: 100, maximo: 1000},{minimo: 1000, maximo:5000}]));
+      }
+      this.faixasPrecos= JSON.parse(localStorage.getItem("faixasPrecos"));
+      this.subcategorias=JSON.parse(localStorage.getItem("subcategorias"));
+      this.categorias=JSON.parse(localStorage.getItem("categorias"));
+  }
+    
   
     pickImage(sourceType) {
       const options: CameraOptions = {
@@ -62,9 +81,24 @@ export class InserirServicoPage implements OnInit {
       await actionSheet.present();
     }
 
+    onChange(obj, indice:number){
+      this.inputs[indice] = obj;
+    }
 
     onPostar(){
-      alert("Postado com sucesso!");
+      let nova_postagem = {
+        descricao: this.inputs[1],
+        categoria: this.inputs[2],
+        subcategoria: this.inputs[3],
+        cidade: "Campina Grande",
+        estado: "PB",
+        data: new Date().toLocaleDateString(),
+        favorito: false,
+        id: 5
+      }
+      localStorage.setItem("nova_postagem", JSON.stringify(nova_postagem));
+      alert("Anúncio publicado com sucesso");
+      this.navCtrl.navigateForward('servicos');
     }
 
   ngOnInit() {
