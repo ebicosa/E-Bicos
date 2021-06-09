@@ -1,9 +1,130 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>anuncio</ion-title>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title slot="start">Anúncio</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
+  <ion-list>
+    <!--<ion-item lines="none" class="ion-no-padding">
+      <div>
+        <ion-item-group lines="none" class="ion-padding-vertical-3x">
+          <ion-img src="../../assets/camera.svg" class="ion-padding-horizontal"></ion-img>
+          <ion-label color="primary">Inserir Foto</ion-label>
+        </ion-item-group>
+      </div>
+    </ion-item>-->
+    <ion-item-group>
+      <ion-item lines="none">
+        <h5>
+          Título do anúncio aqui
+        </h5>
+      </ion-item>
+      <ion-item lines="full" class="ion-padding-horizontal">
+        <ion-label>
+          Publicado em data do anuncio aqui
+        </ion-label>
+      </ion-item>
+    </ion-item-group>
+    
+    <ion-item-group>
+      <ion-item lines="none">
+        <h5>
+          Descrição
+        </h5>
+      </ion-item>
+      <ion-item lines="full" class="ion-padding-horizontal">
+        <ion-label class="ion-text-wrap">
+          Lorem ipsum dolor
+        </ion-label>
+      </ion-item>
+    </ion-item-group>
 
+    <ion-item-group>
+      <ion-item lines="none">
+        <h5>
+          Localização
+        </h5>
+      </ion-item>
+      <ion-item lines="full" class="ion-padding-horizontal">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="5">
+              <ion-label>CEP</ion-label>
+            </ion-col>
+            <ion-col size="7">
+              <ion-label>00.000-000</ion-label>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="5">
+              <ion-label>Município</ion-label>
+            </ion-col>
+            <ion-col size="7">
+              <ion-label>Campina Grande</ion-label>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="5">
+              <ion-label>Bairro</ion-label>
+            </ion-col>
+            <ion-col size="7">
+              <ion-label>Palmeiras</ion-label>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="5">
+              <ion-label>Logradouro</ion-label>
+            </ion-col>
+            <ion-col size="7">
+              <ion-label class="ion-text-wrap">Rua Enfermeira Ana Maria Barbosa de Almeida</ion-label>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-item-group>
+
+    <ion-item-group>
+      <ion-item lines="none">
+        <h5>
+          Categoria
+        </h5>
+      </ion-item>
+      <ion-item lines="full" class="ion-padding-horizontal">
+        <ion-label class="ion-text-wrap">
+          Vaga de emprego para assistente de programação
+        </ion-label>
+      </ion-item>
+    </ion-item-group>
+
+    <ion-item-group>
+      <ion-item lines="none">
+        <h5>
+          Área
+        </h5>
+      </ion-item>
+      <ion-item lines="full" class="ion-padding-horizontal">
+        <ion-label class="ion-text-wrap">
+          Telecomunicação/Informática/Multimídia
+        </ion-label>
+      </ion-item>
+    </ion-item-group>
+
+    <ion-item-group>
+      <ion-item lines="none">
+        <h5>
+          Pagamento
+        </h5>
+      </ion-item>
+      <ion-item lines="full" class="ion-padding-horizontal">
+        <ion-icon slot="start" name="cash-outline"></ion-icon>
+        <ion-label class="ion-text-wrap">
+          A combinar
+        </ion-label>
+      </ion-item>
+    </ion-item-group>
+
+  </ion-list>
 </ion-content>
