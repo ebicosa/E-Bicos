@@ -1,48 +1,49 @@
 <ion-header>
     <ion-toolbar color="primary">
         <ion-buttons slot="start">
-            <ion-back-button text="" mode="md"></ion-back-button>
+            <ion-back-button text="" mode="md" defaultHref="perfil"></ion-back-button>
         </ion-buttons>
     <ion-title>Meus Dados</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <ion-list >
+    <ion-item-group>
+    <ion-list>
         <ion-item lines="inset">
-            <ion-label position="floating">Cep*</ion-label>
-            <ion-input (click)="Cep()" maxlength="8" type="tel" [(ngModel)]="endereco.CEP" (ionChange)="onChangeCEP($event)" required></ion-input>
+          <ion-icon name="compass-outline"></ion-icon>
+            <ion-input min="10000000" max="99999999"  placeholder="CEP 00000 000" (click)="Cep()" maxlength="8" inputmode="numeric" [(ngModel)]="endereco.CEP" (ionChange)="onChangeCEP($event)" required></ion-input>
         </ion-item>
     </ion-list>
     <ion-list>
         <ion-item lines="inset">
-            <ion-label position="floating">Rua*</ion-label>
-            <ion-input [(ngModel)]="endereco.Rua" (ionChange)="onChangeRua($event)" required></ion-input>
+            <ion-icon name="location-outline"></ion-icon>
+            <ion-input placeholder="RUA" [(ngModel)]="endereco.Rua" (ionChange)="onChangeRua($event)" required></ion-input>
         </ion-item>
     </ion-list>
     <ion-list >
         <ion-item lines="inset">
-            <ion-label position="floating">Número</ion-label>
-            <ion-input type="number" [(ngModel)]="endereco.numero" (ionChange)="onChangeNumero($event)"></ion-input>
+            <ion-icon name="locate-outline"></ion-icon>
+            <ion-input placeholder="NÚMERO" type="number" [(ngModel)]="endereco.numero" (ionChange)="onChangeNumero($event)"></ion-input>
         </ion-item>
     </ion-list>
     <ion-list >
         <ion-item lines="inset">
-            <ion-label position="floating">Bairro*</ion-label>
-            <ion-input id="bairro"  [(ngModel)]="endereco.Bairro" (ionChange)="onChangeBairro($event)" required ></ion-input>
+            <ion-icon name="navigate-circle-outline"></ion-icon>
+            <ion-input placeholder="BAIRRO" name="Bairro"  [(ngModel)]="endereco.Bairro" (ionChange)="onChangeBairro($event)" required ></ion-input>
         </ion-item>
     </ion-list>
      <ion-list >
         <ion-item lines="inset">
-            <ion-label position="floating">Complemento</ion-label>
-            <ion-input  [(ngModel)]="endereco.complemento" (ionChange)="onChangeComplemento($event)"></ion-input>
+            <ion-icon name="pin-outline"></ion-icon>
+            <ion-input placeholder="COMPLEMENTO"  [(ngModel)]="endereco.complemento" (ionChange)="onChangeComplemento($event)"></ion-input>
         </ion-item>
     </ion-list>
 
-       <div class="n3">
+       <div class="ion-padding-vertical-x">
             <button (click)="teste()" class="btnEntrar">
             Concluir Cadastro
             </button>
         </div>
-
+  </ion-item-group>
 </ion-content>
