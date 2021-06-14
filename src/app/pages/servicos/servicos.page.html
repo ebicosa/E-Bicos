@@ -30,20 +30,20 @@
 </ion-header>
 
 <ion-content>
-  <ion-card *ngFor="let card of cards" (click)="abreAnuncio(card)">
+  <ion-card *ngFor="let card of cards">
     <ion-item lines="full">
-      <ion-card-subtitle>{{card.categoria}}</ion-card-subtitle>
+      <ion-card-subtitle (click)="abreAnuncio(card)">{{card.categoria}}</ion-card-subtitle>
       <ion-button fill="clear" slot="end">
         <ion-icon slot="icon-only" name="share-social-outline"></ion-icon>
       </ion-button>
       <ion-button fill="clear" slot="end" (click)="alteraFavorito(card)">
         <ion-icon slot="icon-only"
-        [class]="card.favorito ? 'heartSelect' : ''"
+        [class]="card.favorito ? 'heartSelected' : ''"
         [name]="card.favorito ? 'heart' : 'heart-outline'"></ion-icon>
       </ion-button>
     </ion-item>
 
-    <ion-card-content>
+    <ion-card-content (click)="abreAnuncio(card)">
       <ion-card-title>{{card.subcategoria}}</ion-card-title>
       {{card.descricao}}
     </ion-card-content>
@@ -64,7 +64,5 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-
   </ion-card>
-
 </ion-content>

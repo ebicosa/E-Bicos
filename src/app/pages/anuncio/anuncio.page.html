@@ -4,6 +4,14 @@
       <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title slot="start">Anúncio</ion-title>
+    <ion-button fill="clear" slot="end" (click)="alteraFavorito(card)">
+      <ion-icon slot="icon-only"
+      [class]="card.favorito ? 'heartSelected' : 'heartUnselected'"
+      [name]="card.favorito ? 'heart' : 'heart-outline'"></ion-icon>
+    </ion-button>
+    <ion-button fill="clear" slot="end">
+      <ion-icon slot="icon-only" name="share-social-outline" style="color: white"></ion-icon>
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 
@@ -132,16 +140,26 @@
           {{card.autor}}
         </h5>
       </ion-item>
-      <ion-item lines="full" class="ion-padding-horizontal">
+      <ion-item lines="none" class="ion-padding-horizontal">
         <ion-label class="ion-text-wrap">
           No E-BICOS desde DD/MM/AAAA.
+        </ion-label>
+      </ion-item>
+      <ion-item lines="none">
+        <h5 class=bold>
+          Anunciante
+        </h5>
+      </ion-item>
+      <ion-item lines="full" class="ion-padding-horizontal">
+        <ion-label class="ion-text-wrap">
+          <a href="#">Ver todos os anúncios</a>
         </ion-label>
       </ion-item>
     </ion-item-group>
 
     <ion-item-group>
       <ion-item lines="none">
-        <h5>
+        <h5 class=bold>
           Semelhantes
         </h5>
       </ion-item>
@@ -161,5 +179,13 @@
     <ion-item lines="none">
       <p>Irregularidades no anúncio? <a href="#">Denunciar</a>.</p>
     </ion-item>
+    <ion-item lines="none"></ion-item>
   </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="chatbox-ellipses-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
 </ion-content>

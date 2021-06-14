@@ -22,4 +22,7 @@ export class AnuncioPage implements OnInit {
   ngOnInit() {
   }
 
+  alteraFavorito(card : any) {
+    this.card.favorito = !this.card.favorito;
+  }
 }

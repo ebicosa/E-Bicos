@@ -38,3 +38,15 @@ ion-item {
         padding: 8px;
     }
 }
+
+.heartSelected {
+    color: red;
+}
+
+.heartUnselected {
+    color: white;
+}
+
+ion-fab-button {
+    --background: #45E12B;
+}
