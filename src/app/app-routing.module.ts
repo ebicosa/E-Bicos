@@ -70,6 +70,10 @@ const routes: Routes = [
     path: 'anuncio',
     loadChildren: () => import('./pages/anuncio/anuncio.module').then( m => m.AnuncioPageModule)
   },
+  {
+    path: 'favoritos',
+    loadChildren: () => import('./pages/favoritos/favoritos.module').then( m => m.FavoritosPageModule)
+  },
 
 
 
