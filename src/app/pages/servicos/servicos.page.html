@@ -30,7 +30,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-card *ngFor="let card of cards">
+  <ion-card *ngFor="let card of cards" (click)="abreAnuncio(card)">
     <ion-item lines="full">
       <ion-card-subtitle>{{card.categoria}}</ion-card-subtitle>
       <ion-button fill="clear" slot="end">

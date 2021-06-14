@@ -1,3 +1,40 @@
-h5 {
+.bold {
     font-weight: bold;
+}
+
+.ion-padding-vertical-3x {
+    padding-top: 48px;
+    padding-bottom: 48px;
+}
+
+ion-item {
+    --padding-end: 0px;
+    --inner-padding-end: 0px;
+    div {
+        padding: 0px;
+        width: 100%;
+        background-image: url('../../../assets/inserir_foto_bg2.jpg');
+        background-size: cover;
+        background-attachment: fixed;
+        ion-item-group {
+            font-weight: bolder;
+            text-align: -webkit-center;
+            ion-img {
+                width: fit-content;
+            }
+            ion-label {
+                font-weight: bolder;
+            }
+        }
+    }
+    ion-button {
+        height: -webkit-fill-available;
+        width: -webkit-fill-available;
+    }
+    ion-select {
+        width: -webkit-fill-available;
+        border: 1px solid;
+        border-radius: 10px;
+        padding: 8px;
+    }
 }

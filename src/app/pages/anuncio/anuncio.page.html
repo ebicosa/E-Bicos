@@ -1,50 +1,50 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title slot="start">Anúncio</ion-title>
   </ion-toolbar>
 </ion-header>
+
 <ion-content>
   <ion-list>
-    <!--<ion-item lines="none" class="ion-no-padding">
+    <ion-item lines="none" class="ion-no-padding">
       <div>
         <ion-item-group lines="none" class="ion-padding-vertical-3x">
           <ion-img src="../../assets/camera.svg" class="ion-padding-horizontal"></ion-img>
-          <ion-label color="primary">Inserir Foto</ion-label>
         </ion-item-group>
       </div>
-    </ion-item>-->
+    </ion-item>
     <ion-item-group>
       <ion-item lines="none">
-        <h5>
-          Título do anúncio aqui
+        <h5 class=bold>
+          {{card.subcategoria}}
         </h5>
       </ion-item>
       <ion-item lines="full" class="ion-padding-horizontal">
         <ion-label>
-          Publicado em data do anuncio aqui
+          Publicado em {{card.data}}
         </ion-label>
       </ion-item>
     </ion-item-group>
     
     <ion-item-group>
       <ion-item lines="none">
-        <h5>
+        <h5 class=bold>
           Descrição
         </h5>
       </ion-item>
       <ion-item lines="full" class="ion-padding-horizontal">
         <ion-label class="ion-text-wrap">
-          Lorem ipsum dolor
+          {{card.descricao}}
         </ion-label>
       </ion-item>
     </ion-item-group>
 
     <ion-item-group>
       <ion-item lines="none">
-        <h5>
+        <h5 class=bold>
           Localização
         </h5>
       </ion-item>
@@ -55,7 +55,7 @@
               <ion-label>CEP</ion-label>
             </ion-col>
             <ion-col size="7">
-              <ion-label>00.000-000</ion-label>
+              <ion-label>{{card.cep}}</ion-label>
             </ion-col>
           </ion-row>
           <ion-row>
@@ -63,7 +63,7 @@
               <ion-label>Município</ion-label>
             </ion-col>
             <ion-col size="7">
-              <ion-label>Campina Grande</ion-label>
+              <ion-label>{{card.cidade}}</ion-label>
             </ion-col>
           </ion-row>
           <ion-row>
@@ -71,7 +71,7 @@
               <ion-label>Bairro</ion-label>
             </ion-col>
             <ion-col size="7">
-              <ion-label>Palmeiras</ion-label>
+              <ion-label>{{card.bairro}}</ion-label>
             </ion-col>
           </ion-row>
           <ion-row>
@@ -79,7 +79,7 @@
               <ion-label>Logradouro</ion-label>
             </ion-col>
             <ion-col size="7">
-              <ion-label class="ion-text-wrap">Rua Enfermeira Ana Maria Barbosa de Almeida</ion-label>
+              <ion-label class="ion-text-wrap">{{card.logradouro}}</ion-label>
             </ion-col>
           </ion-row>
         </ion-grid>
@@ -88,26 +88,53 @@
 
     <ion-item-group>
       <ion-item lines="none">
-        <h5>
+        <h5 class=bold>
           Categoria
         </h5>
       </ion-item>
       <ion-item lines="full" class="ion-padding-horizontal">
         <ion-label class="ion-text-wrap">
-          Vaga de emprego para assistente de programação
+          {{card.categoria}}
         </ion-label>
       </ion-item>
     </ion-item-group>
 
     <ion-item-group>
       <ion-item lines="none">
-        <h5>
+        <h5 class=bold>
           Área
         </h5>
       </ion-item>
       <ion-item lines="full" class="ion-padding-horizontal">
         <ion-label class="ion-text-wrap">
-          Telecomunicação/Informática/Multimídia
+          {{card.categoria}}
+        </ion-label>
+      </ion-item>
+    </ion-item-group>
+
+    <ion-item-group>
+      <ion-item lines="none">
+        <h5 class=bold>
+          Pagamento
+        </h5>
+      </ion-item>
+      <ion-item lines="full" class="ion-padding-horizontal">
+        <ion-icon slot="start" name="cash-outline"></ion-icon>
+        <label class="ion-text-wrap">
+          {{card.valor == "" ? "A combinar" : "R$ " + card.valor}}
+        </label>
+      </ion-item>
+    </ion-item-group>
+
+    <ion-item-group>
+      <ion-item lines="none">
+        <h5>
+          {{card.autor}}
+        </h5>
+      </ion-item>
+      <ion-item lines="full" class="ion-padding-horizontal">
+        <ion-label class="ion-text-wrap">
+          No E-BICOS desde DD/MM/AAAA.
         </ion-label>
       </ion-item>
     </ion-item-group>
@@ -115,16 +142,24 @@
     <ion-item-group>
       <ion-item lines="none">
         <h5>
-          Pagamento
+          Semelhantes
         </h5>
       </ion-item>
-      <ion-item lines="full" class="ion-padding-horizontal">
-        <ion-icon slot="start" name="cash-outline"></ion-icon>
-        <ion-label class="ion-text-wrap">
-          A combinar
-        </ion-label>
-      </ion-item>
+      <ion-slides [options]="{ slidesPerView: 'auto', zoom: false, grabCursor: true }" class="ion-padding-horizontal">
+        <ion-slide *ngFor="let card of [0,1,2,3,4,5,6]" style="width: 150px; border: 2px solid #f8f8f8; border-radius: 15px;">
+          <ion-col>
+            <ion-img style="pointer-events:none" src="../../assets/inserir_foto_bg2.jpg"></ion-img>
+            <div class="ion-text-start">
+              <ion-label class="ion-text-wrap">
+                <p>Título do anúncio</p>
+              </ion-label>
+            </div>
+          </ion-col>
+        </ion-slide>
+      </ion-slides>
     </ion-item-group>
-
+    <ion-item lines="none">
+      <p>Irregularidades no anúncio? <a href="#">Denunciar</a>.</p>
+    </ion-item>
   </ion-list>
 </ion-content>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-anuncio',
@@ -7,7 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AnuncioPage implements OnInit {
 
-  constructor() { }
+  card: any;
+
+  constructor(private route: ActivatedRoute, private router: Router) {
+    this.route.queryParams.subscribe(params => {
+      let getNav = this.router.getCurrentNavigation();
+      if (getNav.extras.state) {
+        this.card = getNav.extras.state.valorParaEnviar;
+      }
+    });
+  }
 
   ngOnInit() {
   }
