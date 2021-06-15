@@ -86,17 +86,26 @@ export class InserirServicoPage implements OnInit {
     }
 
     onPostar(){
+      var cards = [];
+      cards = JSON.parse(localStorage.getItem("cards"));
+
       let nova_postagem = {
-        descricao: this.inputs[1],
+        autor: "USUÁRIO LOGADO",
         categoria: this.inputs[2],
         subcategoria: this.inputs[3],
-        cidade: "Campina Grande",
-        estado: "PB",
+        descricao: this.inputs[1],
+        valor: "VALOR",
+        cep: "CEP",
+        cidade: "CIDADE",
+        bairro: "BAIRRO",
+        estado: "ESTADO",
         data: new Date().toLocaleDateString(),
         favorito: false,
-        id: 5
+        id: cards.length + 1,
       }
-      localStorage.setItem("nova_postagem", JSON.stringify(nova_postagem));
+
+      cards.push(nova_postagem);
+      localStorage.setItem("cards", JSON.stringify(cards));
       alert("Anúncio publicado com sucesso");
       this.navCtrl.navigateForward('servicos');
     }

@@ -13,7 +13,7 @@ export class AppComponent implements OnInit{
   public appPages = [
     { title: 'Postar serviço', url: 'inserir-servico', icon: 'briefcase-outline' },
     { title: 'Minha conta', url: 'perfil', icon: 'person-circle-outline' },
-    { title: 'Favoritos', url: '', icon: 'heart-outline' },
+    { title: 'Favoritos', url: 'favoritos', icon: 'heart-outline' },
     { title: 'Central de ajuda', url: 'central-ajuda', icon: '' },
     { title: 'Sobre o E-Bicos', url: '', icon: '' },
     { title: 'Dicas de segurança', url: '', icon: '' },
