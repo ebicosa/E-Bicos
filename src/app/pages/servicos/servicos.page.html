@@ -9,12 +9,12 @@
   <ion-toolbar>
     <ion-tabs>
       <ion-tab-bar slot="top">
-        <ion-tab-button tab="localizacao">
+        <ion-tab-button tab="localizacao" (click)="showPageLocalizacao()">
           <ion-icon name="location-outline"></ion-icon>
           <ion-label>Localização</ion-label>
         </ion-tab-button>
     
-        <ion-tab-button tab="categorias">
+        <ion-tab-button tab="categorias" (click)="showPageCategorias()">
           <ion-icon name="pencil-sharp"></ion-icon>
           <ion-label>Categorias</ion-label>
         </ion-tab-button>

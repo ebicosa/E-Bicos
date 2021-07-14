@@ -92,8 +92,26 @@ export class ServicosPage implements OnInit {
     }
   }
 
+  showPageLocalizacao() {
+    let navigationExtras: NavigationExtras = {
+      state: {
+        valorParaEnviar: "localizacao",
+      }
+    };
+    this.router.navigate(['busca'], navigationExtras);
+  }
+
+  showPageCategorias() {
+    let navigationExtras: NavigationExtras = {
+      state: {
+        valorParaEnviar: "categorias",
+      }
+    };
+    this.router.navigate(['busca'], navigationExtras);
+  }
+
   showPageFiltros() {
-    this.navCtrl.navigateForward('filtros');
+    this.router.navigate(['filtros']);
   }
 
   alteraFavorito(card : any) {

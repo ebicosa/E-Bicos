@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-busca',
@@ -26,7 +27,14 @@ export class BuscaPage implements OnInit {
   ];
   cidades = [];
 
-  constructor(private alertController: AlertController) { }
+  constructor(private alertController: AlertController, private route: ActivatedRoute, private router: Router) {
+    this.route.queryParams.subscribe(params => {
+      let getNav = this.router.getCurrentNavigation();
+      if (getNav.extras.state) {
+        this.opcaoSelecionada = getNav.extras.state.valorParaEnviar;
+      }
+    });
+  }
 
   ngOnInit() {
   }
