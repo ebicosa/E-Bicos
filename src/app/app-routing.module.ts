@@ -20,7 +20,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/cadastro/cadastro.module').then( m => m.CadastroPageModule)
   },
   {
-    path: 'filtros',
+    path: 'servicos/filtros',
     loadChildren: () => import('./pages/filtros/filtros.module').then( m => m.FiltrosPageModule)
   },
   {
@@ -34,8 +34,9 @@ const routes: Routes = [
   {
     path: 'servicos',
     loadChildren: () => import('./pages/servicos/servicos.module').then( m => m.ServicosPageModule)
-  },  {
-    path: 'busca',
+  },
+  {
+    path: 'servicos/busca',
     loadChildren: () => import('./pages/busca/busca.module').then( m => m.BuscaPageModule)
   },
   {

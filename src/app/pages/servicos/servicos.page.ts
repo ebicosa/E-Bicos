@@ -98,7 +98,7 @@ export class ServicosPage implements OnInit {
         valorParaEnviar: "localizacao",
       }
     };
-    this.router.navigate(['busca'], navigationExtras);
+    this.router.navigate(['servicos/busca'], navigationExtras);
   }
 
   showPageCategorias() {
@@ -107,11 +107,11 @@ export class ServicosPage implements OnInit {
         valorParaEnviar: "categorias",
       }
     };
-    this.router.navigate(['busca'], navigationExtras);
+    this.router.navigate(['servicos/busca'], navigationExtras);
   }
 
   showPageFiltros() {
-    this.router.navigate(['filtros']);
+    this.router.navigate(['servicos/filtros']);
   }
 
   alteraFavorito(card : any) {
