@@ -21,7 +21,7 @@ const routes: Routes = [
   },
   {
     path: 'servicos/filtros',
-    loadChildren: () => import('./pages/filtros/filtros.module').then( m => m.FiltrosPageModule)
+    loadChildren: () => import('./pages/servicos/filtros/filtros.module').then( m => m.FiltrosPageModule)
   },
   {
     path: 'recuperar-senha',
@@ -37,7 +37,17 @@ const routes: Routes = [
   },
   {
     path: 'servicos/busca',
-    loadChildren: () => import('./pages/busca/busca.module').then( m => m.BuscaPageModule)
+    loadChildren: () => import('./pages/servicos/busca/busca.module').then( m => m.BuscaPageModule)
+  },
+  {
+    path: 'servicos/categorias',
+    redirectTo: 'servicos/busca',
+    pathMatch: 'full'
+  },
+  {
+    path: 'servicos/localizacao',
+    redirectTo: 'servicos/busca',
+    pathMatch: 'full'
   },
   {
     path: 'central-ajuda',
