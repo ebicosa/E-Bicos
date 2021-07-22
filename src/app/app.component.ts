@@ -1,3 +1,5 @@
+import { AuthService } from './services/auth.service';
+import { ToastController, LoadingController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -9,6 +11,7 @@ export class AppComponent implements OnInit{
 
   private nome_de_perfil: string;
   private e_mail: string;
+  public loading: any;
 
   public appPages = [
     { title: 'Postar serviço', url: 'inserir-servico', icon: 'briefcase-outline' },
@@ -20,7 +23,9 @@ export class AppComponent implements OnInit{
     { title: 'Termos de uso', url: 'termos-de-uso', icon: '' },
   ];
 
-  constructor() {
+  constructor(private loadingCtrl : LoadingController,
+    private tostctrl: ToastController,
+    private authservice : AuthService) {
     if(localStorage.getItem('profile_name') === null){
       localStorage.setItem('profile_name', 'Victor Emanuel');
     }
@@ -36,6 +41,22 @@ export class AppComponent implements OnInit{
     localStorage.setItem('estados', JSON.stringify( [{nome: 'Paraíba'}, { nome: 'Acre'}]));
     localStorage.setItem('cidades', JSON.stringify([{nome: 'Campina Grande'}, { nome: 'Rio Branco'}]));
     localStorage.setItem('faixasPrecos', JSON.stringify( [{minimo: 100, maximo: 1000},{minimo: 1000, maximo:5000}]));
+  }
+
+  async logout(){
+    await this.presentLoading();
+    try{
+      await this.authservice.logout();
+    } catch(error){
+      console.log(error);
+    } finally{
+      this.loading.dismiss();
+    }
+  }
+
+  async presentLoading(){
+    this.loading = await this.loadingCtrl.create({message:"Por favor, aguarde ..."});
+    await this.loading.present();
   }
 
 }

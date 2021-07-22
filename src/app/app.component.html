@@ -28,8 +28,8 @@
     <ion-footer>
       <ion-menu-toggle auto-hide="false">
         <ion-item color="primary" routerDirection="root" routerLink="home" detail="false" routerLinkActive="selected" lines=none>
-          <ion-icon slot="start" name="log-out-outline"></ion-icon>
-          <ion-label class=labelMenuLarge>Sair</ion-label>
+          <ion-icon slot="start" name="log-out-outline" (click)="logout()"></ion-icon>
+          <ion-label class=labelMenuLarge (click)="logout()">Sair</ion-label>
         </ion-item>
       </ion-menu-toggle>
     </ion-footer>

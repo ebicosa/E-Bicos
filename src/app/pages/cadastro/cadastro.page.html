@@ -19,15 +19,7 @@
     <ion-list-header>
         <ion-label color="danger">Formulario Template: Valido {{formulario.valid}}</ion-label>
     </ion-list-header>
-    <ion-list class="list1">
-        <ion-item>
-            <ion-icon name="transgender-outline"></ion-icon>
-            <ion-label>Gênero</ion-label>
-            <ion-select [(ngModel)]="genero" (ionChange)="onChange($event)" nome="genero" mode="ios" interface="popover" placeholder="Selecionar">
-                <ion-select-option *ngFor="let item of generos" [value]="item.id">{{ item.text}}</ion-select-option>
-            </ion-select>
-        </ion-item>
-    </ion-list>
+
     <form class="form" #formulario="ngForm" (ngSubmit)="onSubmitTemplate()">
         <ion-list>
             <ion-item>
@@ -43,6 +35,13 @@
                 <ion-input placeholder="E-mail" clearInput="true"  type="email" name="email" [(ngModel)]="usuario.email" required></ion-input>
             </ion-item>
             <ion-item>
+            <ion-icon name="transgender-outline"></ion-icon>
+            <ion-label>Gênero</ion-label>
+            <ion-select (ionChange)="onChange($event)" nome="genero" mode="ios" interface="popover" placeholder="Selecionar">
+                <ion-select-option *ngFor="let item of generos" [value]="item.id">{{ item.text}}</ion-select-option>
+            </ion-select>
+        </ion-item>
+            <ion-item>
                 <ion-icon name="lock-closed-outline"></ion-icon>
                 <ion-input placeholder="Senha" type="password" name="password" [(ngModel)]="usuario.password" required></ion-input>
             </ion-item>
@@ -50,9 +49,16 @@
                 <ion-icon name="card-outline"></ion-icon>
                 <ion-input clearInput="true" [(ngModel)] = "usuario.cpf" placeholder="CPF" name="cpf"  required></ion-input>
             </ion-item>
+
         </ion-list>
+           <ion-item lines="none" class="link">
+                <ion-label class="ion-text-wrap" >Eu concordo com os <a href="#" target="_blank">Termos de uso</a>
+                e com a <a href="#" target="_blank">Politica de privacidade</a>
+                </ion-label>
+                <ion-checkbox checked="true" disabled slot="start" mode="ios" name="check" required>  </ion-checkbox>
+            </ion-item>
         <div class="n3">
-            <button class="btnEntrar" type="submit" >
+            <button class="btnEntrar" type="submit" [disabled]="formulario.invalid" >
         Concluir Cadastro
         </button>
         </div>

@@ -108,7 +108,11 @@ const routes: Routes = [
     path: 'favoritos',
     loadChildren: () => import('./pages/favoritos/favoritos.module').then( m => m.FavoritosPageModule),
     canActivate : [AuthGuard]
+  },  {
+    path: 'cancelar-cadastro',
+    loadChildren: () => import('./pages/cancelar-cadastro/cancelar-cadastro.module').then( m => m.CancelarCadastroPageModule)
   },
+
 
 
 

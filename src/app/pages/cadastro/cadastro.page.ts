@@ -26,7 +26,6 @@ export class CadastroPage implements OnInit {
   }
 
 
-
   constructor( private navCtrl : NavController,
     private loadingCtrl : LoadingController,
     private tostctrl: ToastController,
