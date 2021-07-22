@@ -17,6 +17,7 @@ const routes: Routes = [
   {
     path: 'entrar',
     loadChildren: () => import('./pages/entrar/entrar.module').then( m => m.EntrarPageModule),
+
     canActivate : [LoginGuard]
   },
   {
@@ -26,12 +27,10 @@ const routes: Routes = [
   },
   {
     path: 'servicos/filtros',
-<<<<<<< HEAD
+
     loadChildren: () => import('./pages/servicos/filtros/filtros.module').then( m => m.FiltrosPageModule),
     canActivate : [AuthGuard]
-=======
-    loadChildren: () => import('./pages/servicos/filtros/filtros.module').then( m => m.FiltrosPageModule)
->>>>>>> 3b130d869289639f66bd4d782a98256e6550aaae
+
   },
   {
     path: 'recuperar-senha',
@@ -50,12 +49,10 @@ const routes: Routes = [
   },
   {
     path: 'servicos/busca',
-<<<<<<< HEAD
+
     loadChildren: () => import('./pages/servicos/busca/busca.module').then( m => m.BuscaPageModule),
     canActivate : [AuthGuard]
-=======
-    loadChildren: () => import('./pages/servicos/busca/busca.module').then( m => m.BuscaPageModule)
->>>>>>> 3b130d869289639f66bd4d782a98256e6550aaae
+
   },
   {
     path: 'servicos/categorias',

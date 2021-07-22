@@ -25,11 +25,9 @@ export class ServicosPage implements OnInit {
 
   constructor(private navCtrl : NavController, private router : Router) {
     if(localStorage.getItem("cards") === null) {
-<<<<<<< HEAD
+
     localStorage.setItem("cards", JSON.stringify([
-=======
-  localStorage.setItem("cards", JSON.stringify([
->>>>>>> 3b130d869289639f66bd4d782a98256e6550aaae
+
     {
       autor: "Carla Suelen",
       categoria:"Construção civil",
@@ -89,18 +87,17 @@ export class ServicosPage implements OnInit {
       data: "26/01/2021",
       favorito: false,
       id: 4
-<<<<<<< HEAD
+
     }
   ]));
+
 }
+
 this.cards = JSON.parse(localStorage.getItem("cards"));
-console.log(this.cards);
-=======
-    },
-  ]));
-}
+
+
 this.cards = JSON.parse(localStorage.getItem("cards"));
->>>>>>> 3b130d869289639f66bd4d782a98256e6550aaae
+
 if(!(localStorage.getItem("nova_postagem") === null)){
   this.cards.push(JSON.parse(localStorage.getItem("nova_postagem")));
   localStorage.setItem("nova_postagem", null);
