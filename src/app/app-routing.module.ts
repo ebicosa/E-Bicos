@@ -1,10 +1,13 @@
+import { LoginGuard } from './guards/login.guard';
 import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes, CanActivate } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
+    canActivate : [LoginGuard]
   },
   {
     path: '',
@@ -13,67 +16,93 @@ const routes: Routes = [
   },
   {
     path: 'entrar',
-    loadChildren: () => import('./pages/entrar/entrar.module').then( m => m.EntrarPageModule)
+    loadChildren: () => import('./pages/entrar/entrar.module').then( m => m.EntrarPageModule),
+    canActivate : [LoginGuard]
   },
   {
     path: 'cadastro',
-    loadChildren: () => import('./pages/cadastro/cadastro.module').then( m => m.CadastroPageModule)
+    loadChildren: () => import('./pages/cadastro/cadastro.module').then( m => m.CadastroPageModule),
+    canActivate : [LoginGuard]
   },
   {
     path: 'servicos/filtros',
-    loadChildren: () => import('./pages/filtros/filtros.module').then( m => m.FiltrosPageModule)
+    loadChildren: () => import('./pages/servicos/filtros/filtros.module').then( m => m.FiltrosPageModule),
+    canActivate : [AuthGuard]
   },
   {
     path: 'recuperar-senha',
-    loadChildren: () => import('./pages/recuperar-senha/recuperar-senha.module').then( m => m.RecuperarSenhaPageModule)
+    loadChildren: () => import('./pages/recuperar-senha/recuperar-senha.module').then( m => m.RecuperarSenhaPageModule),
+    canActivate : [AuthGuard]
   },
   {
     path: 'perfil',
-    loadChildren: () => import('./pages/perfil/perfil.module').then( m => m.PerfilPageModule)
+    loadChildren: () => import('./pages/perfil/perfil.module').then( m => m.PerfilPageModule),
+    canActivate : [AuthGuard]
   },
   {
     path: 'servicos',
-    loadChildren: () => import('./pages/servicos/servicos.module').then( m => m.ServicosPageModule)
+    loadChildren: () => import('./pages/servicos/servicos.module' ).then( m => m.ServicosPageModule),
+    canActivate : [AuthGuard]
   },
   {
     path: 'servicos/busca',
-    loadChildren: () => import('./pages/busca/busca.module').then( m => m.BuscaPageModule)
+    loadChildren: () => import('./pages/servicos/busca/busca.module').then( m => m.BuscaPageModule),
+    canActivate : [AuthGuard]
+  },
+  {
+    path: 'servicos/categorias',
+    redirectTo: 'servicos/busca',
+    pathMatch: 'full'
+  },
+  {
+    path: 'servicos/localizacao',
+    redirectTo: 'servicos/busca',
+    pathMatch: 'full'
   },
   {
     path: 'central-ajuda',
-    loadChildren: () => import('./pages/central-ajuda/central-ajuda.module').then( m => m.CentralAjudaPageModule)
+    loadChildren: () => import('./pages/central-ajuda/central-ajuda.module').then( m => m.CentralAjudaPageModule),
+    canActivate : [AuthGuard]
   },
   {
     path: 'meus-dados',
-    loadChildren: () => import('./pages/meus-dados/meus-dados.module').then( m => m.MeusDadosPageModule)
+    loadChildren: () => import('./pages/meus-dados/meus-dados.module').then( m => m.MeusDadosPageModule),
+    canActivate : [AuthGuard]
   },
   {
     path: 'endereco',
-    loadChildren: () => import('./pages/endereco/endereco.module').then( m => m.EnderecoPageModule)
+    loadChildren: () => import('./pages/endereco/endereco.module').then( m => m.EnderecoPageModule),
+    canActivate : [AuthGuard]
   },
   {
     path: 'inserir-servico',
-    loadChildren: () => import('./pages/inserir-servico/inserir-servico.module').then( m => m.InserirServicoPageModule)
+    loadChildren: () => import('./pages/inserir-servico/inserir-servico.module').then( m => m.InserirServicoPageModule),
+    canActivate : [AuthGuard]
   },
   {
     path: 'contatos',
-    loadChildren: () => import('./pages/contatos/contatos.module').then( m => m.ContatosPageModule)
+    loadChildren: () => import('./pages/contatos/contatos.module').then( m => m.ContatosPageModule),
+    canActivate : [AuthGuard]
   },
   {
     path: 'quem-somos',
-    loadChildren: () => import('./pages/quem-somos/quem-somos.module').then( m => m.QuemSomosPageModule)
+    loadChildren: () => import('./pages/quem-somos/quem-somos.module').then( m => m.QuemSomosPageModule),
+    canActivate : [AuthGuard]
   },
   {
     path: 'termos-de-uso',
-    loadChildren: () => import('./pages/termos-de-uso/termos-de-uso.module').then( m => m.TermosDeUsoPageModule)
+    loadChildren: () => import('./pages/termos-de-uso/termos-de-uso.module').then( m => m.TermosDeUsoPageModule),
+    canActivate : [AuthGuard]
   },
   {
     path: 'anuncio',
-    loadChildren: () => import('./pages/anuncio/anuncio.module').then( m => m.AnuncioPageModule)
+    loadChildren: () => import('./pages/anuncio/anuncio.module').then( m => m.AnuncioPageModule),
+    canActivate : [AuthGuard]
   },
   {
     path: 'favoritos',
-    loadChildren: () => import('./pages/favoritos/favoritos.module').then( m => m.FavoritosPageModule)
+    loadChildren: () => import('./pages/favoritos/favoritos.module').then( m => m.FavoritosPageModule),
+    canActivate : [AuthGuard]
   },
 
 

@@ -29,16 +29,16 @@
                        <h5>Email</h5>
                   </ion-item>
                   <ion-item lines="none">
-                         <ion-input autocomplete="email"  clearInput="true" placeholder="exemple@gmail.com" pattern="^([a-z0-9._\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" type="email" name="email" [(ngModel)]="usuario.email" required></ion-input>
+                         <ion-input  placeholder="exemple@gmail.com" pattern="^([a-z0-9._\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" type="email" name="email" [(ngModel)]="usuario.email" required></ion-input>
                   </ion-item>
                   <ion-item lines="none" >
                        <h5>Senha</h5>
                   </ion-item>
                   <ion-item lines="none">
-                    <ion-input placeholder="password" clearInput="true" type="password" name="password" [(ngModel)]="usuario.password" required></ion-input>
+                    <ion-input placeholder="password"  type="password" name="password" [(ngModel)]="usuario.password" required></ion-input>
                   </ion-item>
                   <ion-item lines="none" >
-                  <ion-label (click)="alert()">Esqueceu a senha ?</ion-label>
+                  <ion-label>Esqueceu a senha ?</ion-label>
                   </ion-item>
             </ion-item-group>
         </ion-list>

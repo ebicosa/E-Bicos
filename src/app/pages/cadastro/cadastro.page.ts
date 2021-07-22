@@ -1,4 +1,6 @@
-import { NavController, AlertController } from '@ionic/angular';
+import { NavController, LoadingController, ToastController } from '@ionic/angular';
+import { AuthService } from './../../services/auth.service';
+import { User } from './../../interface/user';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,29 +10,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CadastroPage implements OnInit {
 
-  genero:String = "";
+  public usuario: User = {};
+  public loading: any;
+
+
+
   public generos : Array<any> = [
     { id: "M", text: "Masculino" },
     { id: "F", text: "Feminino" },
     { id: "O", text: "Outro" }
-  ]
+  ];
 
   onChange(event){
     this.usuario.genero = (event.target.value);
   }
 
-  usuario  = {
-    nome: '',
-    genero:'',
-    data: '',
-    email: '',
-    password: '',
-    cpf: ''
 
-  };
 
-  constructor(private navCtrl : NavController,
-    private alertCtrl : AlertController) { }
+  constructor( private navCtrl : NavController,
+    private loadingCtrl : LoadingController,
+    private tostctrl: ToastController,
+    private authservice : AuthService ) { }
 
   ngOnInit() {
   }
@@ -39,26 +39,38 @@ export class CadastroPage implements OnInit {
     this.navCtrl.navigateBack("home");
   }
 
-  onSubmitTemplate(){
-    console.log('Form submit');
+  async onSubmitTemplate(){
     console.log(this.usuario);
-    this.alert();
+    await this.presentLoading();
+    try{
+      await this.authservice.register(this.usuario);
+      this.navCtrl.navigateBack("entrar");
+    } catch(error){
+      let message: string;
+      switch(error.code){
+        case 'auth/email-already-in-use':
+        message = "E-mail já cadastrado no sistema !";
+        break;
+        case 'auth/invalid-email':
+        message = "E-mail no formato Invalido !\nFormato correto: exemple@exemple.com";
+        break;
+        case 'auth/weak-password':
+        message = "Senha invalida !\nSenha deve ter no minimo 8 caracteres !";
+        break;
+      }
+      this.presentToast(message);
+    } finally{
+      this.loading.dismiss();
+    }
   }
 
-  async alert(){
-    const alert = await this.alertCtrl.create({
-      header: 'Informação',
-      message: 'No momento essa pagina está em construção !',
-      mode: "ios",
-      buttons: [
-        {
-          text: 'OK',
-          handler: (blah) => {
-            this.navCtrl.navigateForward('home')
-          }
-        }]
-    });
-    await alert.present();
+  async presentLoading(){
+    this.loading = await this.loadingCtrl.create({message:"Por favor, aguarde ..."});
+    await this.loading.present();
+  }
 
+  async presentToast(message:string){
+    const toast = await this.tostctrl.create({message, duration:2000,mode: 'ios',color: 'dark'});
+    toast.present();
   }
 }

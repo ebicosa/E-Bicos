@@ -1,4 +1,6 @@
-import { AlertController, NavController } from '@ionic/angular';
+import { User } from './../../interface/user';
+import { AuthService } from './../../services/auth.service';
+import { AlertController, NavController, LoadingController, ToastController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
@@ -9,21 +11,14 @@ import { NgForm } from '@angular/forms';
 })
 export class EntrarPage implements OnInit {
 
-  usuario  = {
-    email: '',
-    password: ''
-  };
-  usuarios: any[] = [];
+
+  public usuario: User = {};
+  public loading: any;
 
   constructor(private navCtrl : NavController ,
-    private alertCtrl : AlertController) {
-    let userJson = localStorage.getItem("user");
-
-    if (userJson != null){
-      this.usuarios = JSON.parse(userJson);
-    }
-
-   }
+    private loadingCtrl : LoadingController,
+    private tostctrl: ToastController,
+    private authservice : AuthService) {}
 
   ngOnInit() {
   }
@@ -36,20 +31,38 @@ export class EntrarPage implements OnInit {
     this.navCtrl.navigateBack("home");
   }
 
-  onSubmitTemplate(){
-    console.log('Form submit');
+  async onSubmitTemplate(){
     console.log(this.usuario);
-    this.navCtrl.navigateForward("servicos");
+    await this.presentLoading();
+    try{
+      await this.authservice.login(this.usuario);
+    } catch(error){
+      let message: string;
+      switch(error.code){
+        case 'auth/user-not-found':
+        message = "E-mail não cadastrado no sistema !";
+        break;
+        case 'auth/invalid-email':
+        message = "E-mail no formato Invalido !\nFormato correto: exemple@exemple.com";
+        break;
+        case 'auth/wrong-password':
+        message = "Senha invalida !";
+        break;
+      }
+      this.presentToast(message);
+    } finally{
+      this.loading.dismiss();
+    }
   }
 
-  async alert(){
-    const alert = await this.alertCtrl.create({
-      header: 'Informação',
-      message: 'No momento essa pagina está em construção !',
-      mode: "ios"
-    });
-    await alert.present();
+  async presentLoading(){
+    this.loading = await this.loadingCtrl.create({message:"Por favor, aguarde ..."});
+    await this.loading.present();
+  }
 
+  async presentToast(message:string){
+    const toast = await this.tostctrl.create({message, duration:2000,mode: 'ios',color: 'dark'});
+    toast.present();
   }
 
 }
