@@ -1,3 +1,4 @@
+import { AngularFirestore } from '@angular/fire/firestore';
 import { NavController, LoadingController, ToastController } from '@ionic/angular';
 import { AuthService } from './../../services/auth.service';
 import { User } from './../../interface/user';
@@ -29,7 +30,8 @@ export class CadastroPage implements OnInit {
   constructor( private navCtrl : NavController,
     private loadingCtrl : LoadingController,
     private tostctrl: ToastController,
-    private authservice : AuthService ) { }
+    private authservice : AuthService,
+    private afs : AngularFirestore) { }
 
   ngOnInit() {
   }
@@ -39,10 +41,13 @@ export class CadastroPage implements OnInit {
   }
 
   async onSubmitTemplate(){
-    console.log(this.usuario);
     await this.presentLoading();
+    console.log(this.usuario);
     try{
-      await this.authservice.register(this.usuario);
+      const newuser = await this.authservice.register(this.usuario);
+      const newuserObj = Object.assign({},this.usuario);
+      delete newuserObj.password;
+      await this.afs.collection('Users').doc(newuser.user.uid).set(newuserObj);
       this.navCtrl.navigateBack("entrar");
     } catch(error){
       let message: string;

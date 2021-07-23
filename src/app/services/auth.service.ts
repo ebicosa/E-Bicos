@@ -11,6 +11,7 @@ export class AuthService {
 
   register(user : User){
     return this.afa.createUserWithEmailAndPassword(user.email,user.password);
+
   }
 
   login(user : User){
@@ -23,6 +24,5 @@ export class AuthService {
   getAuth(){
     return this.afa;
   }
-
 
 }

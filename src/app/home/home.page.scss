@@ -63,8 +63,16 @@ div {
   color: white;
   background: #01DA01;
   font-size: 20px;
-  border-radius: 2px  4px;
+  border-radius: 15px  15px;
 
+}
+.btnCriar {
+  width: 192.2px;
+  height: 56px;
+  color: black;
+  background: none;
+  font-size: 20px;
+  border-radius: 15px 15px;
 }
 ion-content{
   --background: url('../../assets/telalinear.png');

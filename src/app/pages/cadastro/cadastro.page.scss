@@ -1,62 +1,56 @@
-ion-toolbar{
-  ion-title{
-    padding-top: 20px;
-    margin-right: 30px;
+ion-header {
+  height: auto;
+  width: auto;
+  ion-toolbar {
+    height: 100%;
+    width: auto;
+    text-align: center;
+    ion-title {
+      width: auto;
+      height: auto;
+      margin-top: 5px;
+      margin-bottom: 10px;
+      position: relative;
+      margin-left: -40px ;
+
+    }
   }
 }
 
-.link{
+.link {
   font-size: 12px;
   width: 100%;
   padding-left: 5%;
   margin-top: 10px;
-
 }
 
-
-ion-list{
+ion-list {
   width: 100%;
+  padding-top: 3%;
   padding-left: 15%;
   padding-right: 15%;
 }
-ion-icon{
+ion-icon {
   margin-right: 15px;
 }
-ion-input{
+ion-input {
   height: 50px;
   width: 100%;
 }
 
-.n1{
-    padding-top: 2%;
-    text-align: center;
-    color: white;
-    font-weight: bold;
-}
 
-.n2{
-  padding-top: 5px;
-  margin-top: auto;
-  text-align: center;
-  font-size: 18px;
-  color: white;
-  padding-bottom: 10px;
-
-}
-.n3{
+.n3 {
   padding-top: 15px;
   margin-top: auto;
   text-align: center;
 }
 
-.btnEntrar{
+.btnEntrar {
   width: 60%;
   height: 56px;
   color: white;
-  background: #2877D3;
+  background: #2877d3;
   font-size: 20px;
-  border-radius: 15px  15px;
+  border-radius: 15px 15px;
   margin-bottom: 15px;
-
 }
-
