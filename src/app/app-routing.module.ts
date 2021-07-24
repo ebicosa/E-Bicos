@@ -48,13 +48,6 @@ const routes: Routes = [
     canActivate : [AuthGuard]
   },
   {
-    path: 'servicos/busca',
-
-    loadChildren: () => import('./pages/servicos/busca/busca.module').then( m => m.BuscaPageModule),
-    canActivate : [AuthGuard]
-
-  },
-  {
     path: 'servicos/categorias',
     redirectTo: 'servicos/busca',
     pathMatch: 'full'
@@ -90,16 +83,6 @@ const routes: Routes = [
     canActivate : [AuthGuard]
   },
   {
-    path: 'quem-somos',
-    loadChildren: () => import('./pages/quem-somos/quem-somos.module').then( m => m.QuemSomosPageModule),
-    canActivate : [AuthGuard]
-  },
-  {
-    path: 'termos-de-uso',
-    loadChildren: () => import('./pages/termos-de-uso/termos-de-uso.module').then( m => m.TermosDeUsoPageModule),
-    canActivate : [AuthGuard]
-  },
-  {
     path: 'anuncio',
     loadChildren: () => import('./pages/anuncio/anuncio.module').then( m => m.AnuncioPageModule),
     canActivate : [AuthGuard]
@@ -108,14 +91,11 @@ const routes: Routes = [
     path: 'favoritos',
     loadChildren: () => import('./pages/favoritos/favoritos.module').then( m => m.FavoritosPageModule),
     canActivate : [AuthGuard]
-  },  {
+  },
+  {
     path: 'cancelar-cadastro',
     loadChildren: () => import('./pages/cancelar-cadastro/cancelar-cadastro.module').then( m => m.CancelarCadastroPageModule)
   },
-
-
-
-
 ];
 
 @NgModule({

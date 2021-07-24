@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { TermosDeUsoPageRoutingModule } from './termos-de-uso-routing.module';
+import { LocalizacaoPageRoutingModule } from './localizacao-routing.module';
 
-import { TermosDeUsoPage } from './termos-de-uso.page';
+import { LocalizacaoPage } from './localizacao.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    TermosDeUsoPageRoutingModule
+    LocalizacaoPageRoutingModule
   ],
-  declarations: [TermosDeUsoPage]
+  declarations: [LocalizacaoPage]
 })
-export class TermosDeUsoPageModule {}
+export class LocalizacaoPageModule {}

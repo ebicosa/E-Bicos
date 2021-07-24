@@ -1,0 +1,19 @@
+ion-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+
+  min-height: 140px;
+
+  ion-img {
+    height: 62px;
+  }
+
+  ion-label {
+    font: 700 14px Arial, sans-serif;
+    color: #000;
+    text-align: center;
+    max-width: 100px;
+  }
+}
