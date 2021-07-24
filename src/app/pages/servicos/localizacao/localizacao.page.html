@@ -24,25 +24,40 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-label>Estado:</ion-label>
-    <ion-select placeholder="Selecione aqui"(ionChange)="selectChanged($event)">
-      <ion-select-option
-        *ngFor="let estado of estados"
-        [value]="estado"
-        >
-        {{ estado.nome }}
-      </ion-select-option>
-    </ion-select>
-
-    <ion-label>Cidade:</ion-label>
-    <ion-select placeholder="Selecione aqui">
-      <ion-select-option
-        *ngFor="let cidade of cidades"
-        [value]="cidade"
+  <form (ngSubmit)="onSubmit()">
+    <ion-list>
+      <ion-label>Estado:</ion-label>
+      <ion-select
+        name="estado"
+        placeholder="Selecione aqui"
+        [(ngModel)]="estado"
+        (ionChange)="selectChanged($event)"
       >
-        {{ cidade }}
-      </ion-select-option>
-    </ion-select>
-  </ion-list>
+        <ion-select-option
+          *ngFor="let estado of estados"
+          [value]="estado"
+        >
+          {{ estado.nome }}
+        </ion-select-option>
+      </ion-select>
+
+      <ion-label>Cidade:</ion-label>
+      <ion-select
+        name="cidade"
+        [(ngModel)]="cidade"
+        placeholder="Selecione aqui"
+      >
+        <ion-select-option
+          *ngFor="let cidade of cidades"
+          [value]="cidade"
+        >
+          {{ cidade.nome }}
+        </ion-select-option>
+      </ion-select>
+
+      <ion-button expand="block" type="submit">
+        Buscar Serviços
+      </ion-button>
+    </ion-list>
+  </form>
 </ion-content>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertController, NavController } from '@ionic/angular';
+import { Estado, Cidade } from '../../../interface/localidade';
 
 @Component({
   selector: 'app-localizacao',
@@ -7,31 +9,46 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LocalizacaoPage implements OnInit {
 
-  estadoSelecionado = {
-    nome: '',
-    cidades: []
-  };
+  estados: Array<Estado>;
+  estado: Estado;
 
-  estados = [
-    {
-      nome: 'Paraíba',
-      cidades: ['Campina Grande', 'João Pessoa']
-    },
-    {
-      nome: 'Pernambuco',
-      cidades: ['Recife', 'Caruaru']
-    },
-  ];
-  cidades = [];
+  cidades: Array<Cidade>;
+  cidade: Cidade;
 
-  constructor() { }
+  baseURL = 'https://servicodados.ibge.gov.br/api/v1/localidades';
+
+  constructor(private navController: NavController, private alertController: AlertController) { }
 
   ngOnInit() {
+    fetch(`${this.baseURL}/estados?orderBy=nome`)
+      .then(response => response.json())
+      .then(result => this.estados = result);
   }
 
   selectChanged(event: any) {
-    this.estadoSelecionado = event.detail.value;
-    this.cidades = this.estadoSelecionado.cidades;
+    const { id } = event.detail.value;
+    this.cidade = undefined;
+
+    fetch(`${this.baseURL}/estados/${id}/municipios`)
+      .then(response => response.json())
+      .then(result => this.cidades = result);
+  }
+
+  async alert() {
+    const alert = await this.alertController.create({
+      message: 'Selecione uma cidade!',
+      buttons: ['OK']
+    });
+
+    alert.present();
+  }
+
+  onSubmit() {
+    if (!this.cidade) {
+      this.alert();
+    } else {
+      this.navController.navigateForward(`servicos?estado=${this.estado.nome}&cidade=${this.cidade.nome}`);
+    }
   }
 
 }

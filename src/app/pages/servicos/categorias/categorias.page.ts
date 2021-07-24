@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-categorias',
@@ -8,19 +8,14 @@ import { AlertController } from '@ionic/angular';
 })
 export class CategoriasPage implements OnInit {
 
-  constructor(private alertController: AlertController) {
+  constructor(private navController: NavController) {
   }
 
   ngOnInit() {
   }
 
-  async alert(mensagem: string) {
-    const alert = await this.alertController.create({
-      message: mensagem,
-      buttons: ['OK']
-    });
-
-    alert.present();
+  onClickCategoria(categoria: string) {
+    this.navController.navigateForward(`servicos?categoria=${categoria}`);
   }
 
 }
