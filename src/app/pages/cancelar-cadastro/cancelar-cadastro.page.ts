@@ -1,3 +1,5 @@
+import { AuthService } from './../../services/auth.service';
+import { LoadingController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,25 +10,30 @@ import { Component, OnInit } from '@angular/core';
 export class CancelarCadastroPage implements OnInit {
 
 
-  motivo = {
-    tempo: String,
-    descricao: String
-  }
+  public loading: any;
 
-  public motivos : Array<any> = [
-    { text: "Permanente" },
-    { text: "Não sei" },
-    { text: "Indefinido" }
-  ];
-
-   onChange(event){
-    this.motivo.tempo = (event.target.value);
-    console.log(this.motivo);
-  }
-
-  constructor() { }
+  constructor(private loadingCtrl : LoadingController,
+    private authservice : AuthService) { }
 
    ngOnInit() {
   }
+
+
+  async Descadastar(){
+    await this.presentLoading();
+    try{
+      await this.authservice.logout();
+    } catch(error){
+      console.log(error);
+    } finally{
+      this.loading.dismiss();
+    }
+  }
+
+  async presentLoading(){
+    this.loading = await this.loadingCtrl.create({message:"Por favor, aguarde ..."});
+    await this.loading.present();
+  }
+
 
 }

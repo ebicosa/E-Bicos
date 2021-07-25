@@ -84,7 +84,8 @@ const routes: Routes = [
   },
   {
     path: 'cancelar-cadastro',
-    loadChildren: () => import('./pages/cancelar-cadastro/cancelar-cadastro.module').then( m => m.CancelarCadastroPageModule)
+    loadChildren: () => import('./pages/cancelar-cadastro/cancelar-cadastro.module').then( m => m.CancelarCadastroPageModule),
+    canActivate : [AuthGuard]
   },
 ];
 

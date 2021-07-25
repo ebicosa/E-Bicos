@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/Camera/ngx';
 import { File } from '@ionic-native/file/ngx';
-import { ActionSheetController, NavController } from '@ionic/angular';
+import { ActionSheetController, NavController, LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-inserir-servico',
@@ -15,7 +15,8 @@ export class InserirServicoPage implements OnInit {
   subcategorias;
   inputs = ['', '', '', '', ''];
   croppedImagePath = "";
-  isLoading = false;
+
+  public loading:any;
 
   imagePickerOptions = {
     maximumImagesCount: 1,
@@ -25,7 +26,8 @@ export class InserirServicoPage implements OnInit {
   constructor(private camera: Camera,
     public actionSheetController: ActionSheetController,
     private file: File,
-    private navCtrl : NavController) {
+    private navCtrl : NavController,
+    private loadingCtrl : LoadingController) {
       if(localStorage.getItem("categorias") === null){
         localStorage.setItem("categorias", JSON.stringify([{nome: "Construção Civil"},{nome: "Serviços domésticos"}]));
       }
@@ -85,7 +87,14 @@ export class InserirServicoPage implements OnInit {
       this.inputs[indice] = obj;
     }
 
-    onPostar(){
+
+
+  ngOnInit() {
+  }
+  async onPostar(){
+    await this.presentLoading();
+
+    try{
       var cards = [];
       cards = JSON.parse(localStorage.getItem("cards"));
 
@@ -106,11 +115,18 @@ export class InserirServicoPage implements OnInit {
 
       cards.push(nova_postagem);
       localStorage.setItem("cards", JSON.stringify(cards));
-      alert("Anúncio publicado com sucesso");
-      this.navCtrl.navigateForward('servicos');
-    }
 
-  ngOnInit() {
+      this.navCtrl.navigateForward('servicos');
+    } catch(error){
+      console.log("ERROR 404");
+
+    } finally{
+      this.loading.dismiss();
+    }
   }
 
+  async presentLoading(){
+    this.loading = await this.loadingCtrl.create({message:"Por favor, aguarde ..."});
+    await this.loading.present();
+  }
 }

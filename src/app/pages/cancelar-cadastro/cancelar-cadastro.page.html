@@ -1,26 +1,61 @@
 <ion-header>
-    <ion-toolbar color="primary">
-        <ion-buttons slot="start">
-            <ion-back-button text="" mode="md" defaultHref="home"></ion-back-button>
-        </ion-buttons>
-        <ion-title>
-
-                <ion-label>Cancelar Cadastro</ion-label>
-
-        </ion-title>
-    </ion-toolbar>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button
+        text=""
+        mode="md"
+        defaultHref="servicos"
+      ></ion-back-button>
+    </ion-buttons>
+    <ion-title>Descadastar </ion-title>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
-<ion-label>Por quanto tempo pretende cancelar a conta !</ion-label>
-<ion-item lines="none">
-            <ion-select (ionChange)="onChange($event)" nome="motivo" mode="ios" interface="popover" placeholder="Selecionar">
-                <ion-select-option *ngFor="let item of motivos" [value]="item.text">{{ item.text}}</ion-select-option>
-            </ion-select>
-</ion-item>
-<ion-item lines="none" >
-  <ion-label position="stacked">Diganos sua opnião sobre o aplicativo !</ion-label>
-  <ion-textarea  placeholder="Digite aqui ...." rows="8  " >
-  </ion-textarea>
-</ion-item>
+  <ion-list>
+    <ion-input
+      placeholder="Qual o motivo para excluir sua conta ?"
+      disabled
+    ></ion-input>
+    <ion-radio-group>
+      <ion-item>
+        <ion-label>Não gostei do aplicativo</ion-label>
+        <ion-radio mode="md" value="nga"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Não tive retorno do aplicativo</ion-label>
+        <ion-radio mode="md" value="ntra"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Aplicativo apresenta muitos erros</ion-label>
+        <ion-radio mode="md" value="aame"></ion-radio>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label>Não sei o motivo</ion-label>
+        <ion-radio mode="md" value="nsm"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+
+
+    <ion-input placeholder="Você recomendaria o E-BICOS ?" disabled></ion-input>
+    <ion-item lines="none">
+      <ion-range min="0" max="10" snaps="true" color="danger">
+        <ion-label slot="start">Não</ion-label>
+        <ion-label slot="end">Sim</ion-label>
+      </ion-range>
+    </ion-item>
+    <ion-input placeholder="Diganos sua opnião sobre o aplicativo !" disabled></ion-input>
+    <br>
+  <ion-item lines="none">
+    <ion-textarea placeholder="Digite aqui ...." rows="8  "> </ion-textarea>
+  </ion-item>
+
+
+  </ion-list>
+  <div class="n3">
+    <button class="btn" (click)="Descadastar()">Descadastar</button>
+  </div>
 </ion-content>

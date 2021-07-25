@@ -1,11 +1,39 @@
+
 ion-item{
   margin-right: 5%;
   margin-left: 5%;
 }
+
 ion-textarea{
   border-radius: 20px;
-  border: 1px solid black;
+  border: 2px solid black;
   padding-top: 10px;
   padding-left: 10px;
 
+}
+
+ion-input{
+  margin-top: 5px;
+  background-color: #d0d1d2;
+  text-align: start;
+  --placeholder-font-style: italic;
+  --placeholder-color: black;
+  --color: black;
+  --placeholder-opacity: 1;
+}
+
+.n3 {
+  padding-top: 15px;
+  margin-top: auto;
+  text-align: center;
+}
+
+.btn {
+  width: 60%;
+  height: 56px;
+  color: white;
+  background: #2877d3;
+  font-size: 20px;
+  border-radius: 30px 30px;
+  margin-bottom: 15px;
 }

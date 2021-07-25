@@ -17,6 +17,7 @@ export class AppComponent implements OnInit{
     { title: 'Postar serviço', url: 'inserir-servico', icon: 'briefcase-outline' },
     { title: 'Minha conta', url: 'perfil', icon: 'person-circle-outline' },
     { title: 'Favoritos', url: 'favoritos', icon: 'heart-outline' },
+    {title: 'Descadastrar', url : 'cancelar-cadastro',icon: 'close-outline'},
     { title: 'Central de ajuda', url: 'central-ajuda', icon: '' },
     { title: 'Sobre o E-Bicos', url: 'quem-somos', icon: '' },
     { title: 'Dicas de segurança', url: '', icon: '' },
