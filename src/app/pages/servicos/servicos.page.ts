@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-servicos',
@@ -10,7 +11,7 @@ export class ServicosPage implements OnInit {
 
   cards = [];
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private navController: NavController) {
     if(localStorage.getItem('cards') === null) {
 
     localStorage.setItem('cards', JSON.stringify([
@@ -120,5 +121,13 @@ if(!(localStorage.getItem('nova_postagem') === null)){
         this.router.navigate(['anuncio'], navigationExtras);
       }
     });
+  }
+
+  buscarServicos() {
+    this.navController.navigateForward('servicos/busca/localizacao');
+  }
+
+  filtrarServicos() {
+    this.navController.navigateForward('servicos/filtros');
   }
 }

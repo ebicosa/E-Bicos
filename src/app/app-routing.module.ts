@@ -48,16 +48,6 @@ const routes: Routes = [
     canActivate : [AuthGuard]
   },
   {
-    path: 'servicos/categorias',
-    redirectTo: 'servicos/busca',
-    pathMatch: 'full'
-  },
-  {
-    path: 'servicos/localizacao',
-    redirectTo: 'servicos/busca',
-    pathMatch: 'full'
-  },
-  {
     path: 'central-ajuda',
     loadChildren: () => import('./pages/central-ajuda/central-ajuda.module').then( m => m.CentralAjudaPageModule),
     canActivate : [AuthGuard]
