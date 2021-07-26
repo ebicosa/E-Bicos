@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -11,8 +12,8 @@ export class FiltrosPage {
   private estados:JSON[];
   private cidades:JSON[];
   private faixasPrecos:JSON[];
-  private selected:Array<Object>;
-  constructor() {
+  private selected:JSON[];
+  constructor(private navController: NavController) {
     if(localStorage.getItem("subcategorias") === null){
       localStorage.setItem("subcategorias", JSON.stringify([{nome: "Eletricista"},{nome: "Encanador"}]));
     }
@@ -33,7 +34,7 @@ export class FiltrosPage {
     this.selected = JSON.parse(localStorage.getItem("selected_filtrosPage"));
   }
 
-  selectChanged(obj, indice:number){
+  selectChanged(obj:any, indice:number){
     if(indice === 4){
       obj = new DatePipe('en-US').transform(Date.parse(obj.toString()), 'MM/dd/YYYY');
     }
@@ -41,10 +42,20 @@ export class FiltrosPage {
   }
 
   onFiltrar(){
-    this.selected.forEach(element => {
-      console.log(element);
-    });
     localStorage.setItem("selected_filtrosPage", JSON.stringify(this.selected));
-    alert("Filtrado com sucesso!");
+    let arraySelected = [];
+    let val:any;
+    for (let selecionados of this.selected){
+      val = JSON.parse(JSON.stringify(selecionados)).nome;
+      if(val === undefined){
+        
+        val = JSON.parse(JSON.stringify(selecionados));
+        if(JSON.stringify(val) === "{}")
+          val = "undefined";
+      }
+      arraySelected.push(val);
+    }
+    console.log(arraySelected);
+    this.navController.navigateForward(`servicos?subcategoria=${arraySelected[0]}&estado=${arraySelected[1]}&cidade=${arraySelected[2]}&faixaPreco=${arraySelected[3]}&data=${arraySelected[4]}`);
   }
 }

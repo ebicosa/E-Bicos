@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationExtras } from '@angular/router';
+import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
 
 @Component({
@@ -10,8 +10,15 @@ import { NavController } from '@ionic/angular';
 export class ServicosPage implements OnInit {
 
   cards = [];
+  title = "Serviços"
 
-  constructor(private router: Router, private navController: NavController) {
+  constructor(private route: ActivatedRoute, private router: Router, private navController: NavController) {
+    this.route.queryParams.subscribe(params => {
+      let getNav = this.router.getCurrentNavigation();
+      if (getNav.extras.state) {
+        this.title = "Meus Anúncios";
+      }
+    });
     if(localStorage.getItem('cards') === null) {
 
     localStorage.setItem('cards', JSON.stringify([

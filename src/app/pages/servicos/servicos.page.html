@@ -1,18 +1,18 @@
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>Serviços</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="buscarServicos()">
-        <ion-icon name="search-outline"></ion-icon>
-      </ion-button>
-      <ion-button (click)="filtrarServicos()">
-        <ion-icon name="funnel-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>{{title}}</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="buscarServicos()">
+                <ion-icon name="search-outline"></ion-icon>
+            </ion-button>
+            <ion-button (click)="filtrarServicos()">
+                <ion-icon name="funnel-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
@@ -51,6 +51,3 @@
     </ion-card>
 
 </ion-content>
-
-
-

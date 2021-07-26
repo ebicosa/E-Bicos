@@ -1,5 +1,6 @@
 import { NavController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
+import { NavigationExtras, Router } from '@angular/router';
 
 @Component({
   selector: 'app-perfil',
@@ -10,7 +11,7 @@ export class PerfilPage implements OnInit {
 
   private profile_name:string;
 
-  constructor(private navCtrl:NavController) {
+  constructor(private router: Router, private navCtrl:NavController) {
     if (localStorage.getItem("profile_name") === null){
       this.profile_name = "Aryelson Gonçalves";
       localStorage.setItem("profile_name", this.profile_name);
@@ -32,7 +33,12 @@ export class PerfilPage implements OnInit {
   }
 
   onMeusAnuncios(obj){
-    alert("Meus anúncios está em construção!");
+    const navigationExtras: NavigationExtras = {
+    state: {
+      valorParaEnviar: "userId=?",
+     }
+    };
+    this.router.navigate(['servicos'], navigationExtras);
   }
 
   onContatos(obj){
@@ -40,7 +46,7 @@ export class PerfilPage implements OnInit {
   }
 
   onFavoritos(obj){
-    alert("Favoritos está em construção!");
+    this.navCtrl.navigateForward("favoritos");
   }
 
   onCertificados(obj){
