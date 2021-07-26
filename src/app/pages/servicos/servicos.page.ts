@@ -16,7 +16,9 @@ export class ServicosPage implements OnInit {
     this.route.queryParams.subscribe(params => {
       let getNav = this.router.getCurrentNavigation();
       if (getNav.extras.state) {
-        this.title = "Meus Anúncios";
+        let val = getNav.extras.state.valorParaEnviar;
+        if(!(Array.isArray(val)))
+          this.title = "Meus Anúncios";
       }
     });
     if(localStorage.getItem('cards') === null) {

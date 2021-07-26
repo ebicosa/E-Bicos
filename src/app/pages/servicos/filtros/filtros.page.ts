@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
+import { NavigationExtras, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 
 @Component({
@@ -13,7 +14,7 @@ export class FiltrosPage {
   private cidades:JSON[];
   private faixasPrecos:JSON[];
   private selected:JSON[];
-  constructor(private navController: NavController) {
+  constructor(private router: Router, private navController: NavController) {
     if(localStorage.getItem("subcategorias") === null){
       localStorage.setItem("subcategorias", JSON.stringify([{nome: "Eletricista"},{nome: "Encanador"}]));
     }
@@ -55,7 +56,12 @@ export class FiltrosPage {
       }
       arraySelected.push(val);
     }
-    console.log(arraySelected);
-    this.navController.navigateForward(`servicos?subcategoria=${arraySelected[0]}&estado=${arraySelected[1]}&cidade=${arraySelected[2]}&faixaPreco=${arraySelected[3]}&data=${arraySelected[4]}`);
+    console.log(Array.isArray(arraySelected));
+    const navigationExtras: NavigationExtras = {
+      state: {
+        valorParaEnviar: arraySelected,
+       }
+      };
+      this.router.navigate(['servicos'], navigationExtras);
   }
 }
