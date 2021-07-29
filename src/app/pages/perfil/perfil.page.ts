@@ -1,6 +1,13 @@
+import { promise } from 'protractor';
+import { resolve } from 'dns';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { User } from './../../interface/user';
+import { AuthService } from './../../services/auth.service';
 import { NavController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-perfil',
@@ -9,20 +16,30 @@ import { NavigationExtras, Router } from '@angular/router';
 })
 export class PerfilPage implements OnInit {
 
-  private profile_name:string;
+  private profile_name: any;
+  private id: any;
+  private user: User;
 
-  constructor(private router: Router, private navCtrl:NavController) {
-    if (localStorage.getItem("profile_name") === null){
-      this.profile_name = "Aryelson Gonçalves";
-      localStorage.setItem("profile_name", this.profile_name);
+  constructor(private router: Router, private navCtrl: NavController,
+    private authservice: AuthService, private afs: AngularFirestore) {
+
     }
-    else{
-      this.profile_name = localStorage.getItem("profile_name");
-    }
-  }
 
   ngOnInit() {
+    //Utilizando funçao getUser() para retornar Promise com ID do usuario logado no sistema
+    const dado = this.authservice.getUser();
+    Promise.resolve(dado).then(result => {
+        this.id = result;
+        //Utilizando afs do AngularFirestore para retornar informaçoes do usuario logado no sistema
+        this.afs.collection('Users').doc(this.id).valueChanges().subscribe(result => {
+          this.user = result;
+          this.profile_name = this.user.nome;
+        });
+    });
+
+
   }
+
 
   onDadosPessoais(obj){
     this.navCtrl.navigateForward("meus-dados");

@@ -15,7 +15,6 @@ canActivate(): Promise<boolean>{
   return new Promise(resolve => {
     this.authservice.getAuth().onAuthStateChanged(user => {
       if (user) this.router.navigate(['servicos']);
-
       resolve(!user ? true : false);
     })
   });

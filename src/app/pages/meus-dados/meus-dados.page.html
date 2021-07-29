@@ -12,12 +12,12 @@
         <ion-list>
             <ion-item>
                 <ion-icon name="person-outline"></ion-icon>
-                <ion-input [(ngModel)]="usuario.nome" mode="ios" clearInput="true"  name="nome"></ion-input>
+                <ion-input [(ngModel)]="usuario.nome" mode="ios" clearInput="true"  name="nome" required></ion-input>
             </ion-item>
              <ion-item>
             <ion-icon name="transgender-outline"></ion-icon>
             <ion-label>Gênero</ion-label>
-            <ion-select [placeholder]="usuario.genero" (ionChange)="onChange($event)" nome="genero" mode="ios" interface="popover" >
+            <ion-select [value]="usuario.genero" (ionChange)="onChange($event)" nome="genero" mode="ios" interface="popover" >
                 <ion-select-option *ngFor="let item of generos" [value]="item.text">{{ item.text}}</ion-select-option>
             </ion-select>
         </ion-item>

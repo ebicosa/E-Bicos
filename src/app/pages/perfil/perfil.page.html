@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header (ion-onLoad)="teste()">
     <ion-toolbar color="primary">
         <ion-buttons slot="start" class="ion-padding-start">
             <ion-back-button defaultHref="servicos" text="" icon="close"></ion-back-button>
@@ -9,7 +9,7 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content >
     <ion-list>
         <ion-list-header class="ion-no-padding">
             <ion-item lines="none" class="ion-padding-vertical">

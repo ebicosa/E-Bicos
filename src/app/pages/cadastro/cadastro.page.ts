@@ -22,27 +22,28 @@ export class CadastroPage implements OnInit {
     { id: "O", text: "Outro" }
   ];
 
-  onChange(event){
-    this.usuario.genero = (event.target.value);
-  }
 
 
-  constructor( private navCtrl : NavController,
-    private loadingCtrl : LoadingController,
+
+  constructor( private navCtrl: NavController,
+    private loadingCtrl: LoadingController,
     private tostctrl: ToastController,
-    private authservice : AuthService,
-    private afs : AngularFirestore) { }
+    private authservice: AuthService,
+    private afs: AngularFirestore) { }
 
   ngOnInit() {
   }
 
+  onChange(event){
+    this.usuario.genero = (event.target.value);
+  }
   returnPageHome(){
     this.navCtrl.navigateBack("home");
   }
 
   async onSubmitTemplate(){
     await this.presentLoading();
-    console.log(this.usuario);
+
     try{
       const newuser = await this.authservice.register(this.usuario);
       const newuserObj = Object.assign({},this.usuario);
