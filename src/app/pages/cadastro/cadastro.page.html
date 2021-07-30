@@ -17,7 +17,7 @@
 </ion-header>
 <ion-content>
 <ion-list-header>
-        <ion-label color="danger">Formulario Template: Valido {{formulario.valid}}</ion-label>
+
     </ion-list-header>
     <form class="form" #formulario="ngForm" (ngSubmit)="onSubmitTemplate()">
         <ion-list>
@@ -27,7 +27,7 @@
             </ion-item>
             <ion-item>
                 <ion-icon name="calendar-outline"></ion-icon>
-                <ion-datetime [(ngModel)] = "usuario.data" name="data"  cancelText="Cancelar" doneText="Confirmar"  displayFormat="DD/MM/YYYY" placeholder="Data Nascimento"></ion-datetime>
+                <ion-datetime monthShortNames="Janeiro, Fevereiro, Março, abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro" [(ngModel)] = "usuario.data" name="data"  cancelText="Cancelar" doneText="Confirmar"  displayFormat="DD,MMM de YYYY" placeholder="Data Nascimento"></ion-datetime>
             </ion-item>
             <ion-item>
                 <ion-icon name="mail-outline"></ion-icon>
@@ -36,7 +36,7 @@
             <ion-item>
             <ion-icon name="transgender-outline"></ion-icon>
             <ion-label>Gênero</ion-label>
-            <ion-select (ionChange)="onChange($event)" nome="genero"  interface="popover" placeholder="Selecionar" required>
+            <ion-select (ionChange)="onChange($event)" nome="genero"  interface="action-sheet" placeholder="Selecionar" required>
                 <ion-select-option *ngFor="let item of generos" [value]="item.text">{{ item.text}}</ion-select-option>
             </ion-select>
         </ion-item>
@@ -46,7 +46,7 @@
             </ion-item>
             <ion-item>
                 <ion-icon name="card-outline"></ion-icon>
-                <ion-input clearInput="true" [(ngModel)] = "usuario.cpf" placeholder="CPF" name="cpf"  required></ion-input>
+                <ion-input clearInput="true" [(ngModel)] = "usuario.cpf" placeholder="CPF" name="cpf" maxlength="11"  required></ion-input>
             </ion-item>
 
         </ion-list>

@@ -19,7 +19,7 @@
 <ion-content>
 
     <ion-list-header>
-        <ion-label color="danger">Formulario Template: Valido {{formulario.valid}}</ion-label>
+
     </ion-list-header>
 
     <form class="form" #formulario="ngForm" (ngSubmit)="onSubmitTemplate()">
@@ -38,7 +38,7 @@
                     <ion-input placeholder="password"  type="password" name="password" [(ngModel)]="usuario.password" required></ion-input>
                   </ion-item>
                   <ion-item class="form" lines="none" >
-                  <ion-label >Esqueceu a senha ?</ion-label>
+                  <ion-label (click)="esqueceuSenha()" >Esqueceu a senha ?</ion-label>
                   </ion-item>
             </ion-item-group>
         </ion-list>

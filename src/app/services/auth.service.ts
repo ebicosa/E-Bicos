@@ -33,6 +33,14 @@ export class AuthService {
     return this.afs.collection('Users').doc(id).update({nome: user.nome,genero: user.genero,data: user.data});
   }
 
+  updateContato(user: User, id: any){
+    return this.afs.collection('Users').doc(id).update({emailSec: user.emailSec,insta: user.insta,celular: user.celular});
+  }
+  updateEndereco(user: User, id: any){
+    this.afs.collection('Users').doc(id).update({cep: user.cep,rua: user.rua});
+    return this.afs.collection('Users').doc(id).update({numero: user.numero,complemento: user.complemento, bairro: user.bairro});
+  }
+
   async getUser(){
     return (await this.afa.currentUser).uid;
   }

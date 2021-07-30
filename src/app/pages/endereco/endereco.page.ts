@@ -1,5 +1,8 @@
+import { AuthService } from './../../services/auth.service';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { User } from './../../interface/user';
 import { Component, OnInit } from '@angular/core';
-import { ToastController } from '@ionic/angular';
+import { ToastController, NavController, LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-endereco',
@@ -8,12 +11,39 @@ import { ToastController } from '@ionic/angular';
 })
 export class EnderecoPage implements OnInit {
 
-  constructor(private toastCtrl: ToastController) { }
+  usuario  = {
+    cep: '',
+    rua:'',
+    numero: '',
+    complemento: '',
+    bairro: ''
+
+  };
+
+  public loading: any;
+  private id: any;
+  private user: User;
+
+  constructor(private authservice: AuthService, private afs: AngularFirestore,
+    private loadingCtrl: LoadingController, private navCtrl: NavController, private toastCtrl: ToastController) {
+    const dado = this.authservice.getUser();
+    Promise.resolve(dado).then(result => {
+        this.id = result;
+        this.afs.collection('Users').doc(this.id).valueChanges().subscribe(result => {
+          this.user = result;
+          this.usuario.cep = this.user.cep;
+          this.usuario.rua = this.user.rua;
+          this.usuario.numero = this.user.numero;
+          this.usuario.complemento = this.user.complemento;
+          this.usuario.bairro = this.user.bairro;
+        });
+    });
+   }
 
   ngOnInit() {
   }
 
-  async Cep() {
+  async toastCep() {
     const toast = await this.toastCtrl.create({
       message: 'Digite Somente Números !',
       mode: "ios",
@@ -24,36 +54,42 @@ export class EnderecoPage implements OnInit {
   }
 
   onChangeCEP(event){
-    this.endereco.CEP = (event.target.value);
+    this.usuario.cep = (event.target.value);
   }
 
   onChangeRua(event){
-    this.endereco.Rua = (event.target.value);
+    this.usuario.rua = (event.target.value);
   }
 
   onChangeNumero(event){
-    this.endereco.numero = (event.target.value);
+    this.usuario.numero = (event.target.value);
   }
 
   onChangeComplemento(event){
-    this.endereco.Complemento = (event.target.value);
+    this.usuario.complemento = (event.target.value);
   }
 
   async onChangeBairro(event){
-    this.endereco.Bairro = (event.target.value);
+    this.usuario.bairro = (event.target.value);
   }
 
-  endereco  = {
-    CEP: '',
-    Rua:'',
-    numero: '',
-    Complemento: '',
-    Bairro: ''
-
-  };
 
 
-  teste(){
-    console.log(this.endereco);
+
+  async salvarDados(){
+    await this.presentLoading();
+    try{
+      this.authservice.updateEndereco(this.usuario, this.id);
+      this.navCtrl.navigateForward("perfil");
+    } catch(error){
+      console.log(error);
+    } finally{
+      this.loading.dismiss();
+    }
+  }
+
+  async presentLoading(){
+    this.loading = await this.loadingCtrl.create({message:"Por favor, aguarde ..."});
+    await this.loading.present();
   }
 }

@@ -31,8 +31,11 @@ export class EntrarPage implements OnInit {
     this.navCtrl.navigateBack("home");
   }
 
+  esqueceuSenha(){
+    this.navCtrl.navigateForward("recuperar-senha");
+  }
+
   async onSubmitTemplate(){
-    console.log(this.usuario);
     await this.presentLoading();
     try{
       await this.authservice.login(this.usuario);

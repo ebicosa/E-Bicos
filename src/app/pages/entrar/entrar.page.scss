@@ -63,6 +63,9 @@ ion-item {
   font-size: 20px;
   border-radius: 15px 15px;
 }
+.btnEntrar[disabled] {
+  background: rgb(110, 110, 110);
+}
 
 .btnCriar {
   width: 192.2px;

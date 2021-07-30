@@ -5,4 +5,13 @@ export interface User {
   nome?: string;
   data?: any;
   genero?: string;
+  cep?: string;
+  rua?: string;
+  numero?: string;
+  bairro?: string;
+  complemento?: any;
+  emailSec?: any;
+  insta?: any;
+  celular?: any;
+
 }

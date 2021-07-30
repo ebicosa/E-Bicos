@@ -1,3 +1,7 @@
+import { User } from './../../interface/user';
+import { NavController, LoadingController } from '@ionic/angular';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,22 +12,49 @@ import { Component, OnInit } from '@angular/core';
 export class ContatosPage implements OnInit {
 
   usuario  = {
-
-    email: 'teste@gmail.com',
+    email: '',
     emailSec:'',
     insta: '',
-    celular: '',
-    fixo: ''
+    celular: ''
 
   };
+  public loading: any;
+  private id: any;
+  private user: User;
 
-  constructor() { }
+  constructor(private authservice: AuthService, private afs: AngularFirestore,
+    private loadingCtrl: LoadingController, private navCtrl: NavController) {
+      const dado = this.authservice.getUser();
+    Promise.resolve(dado).then(result => {
+        this.id = result;
+        this.afs.collection('Users').doc(this.id).valueChanges().subscribe(result => {
+          this.user = result;
+          this.usuario.email = this.user.email;
+          this.usuario.emailSec = this.user.emailSec;
+          this.usuario.insta = this.user.insta;
+          this.usuario.celular = this.user.celular;
+        });
+    });
+    }
 
   ngOnInit() {
   }
 
-  onSubmitTemplate(){
+  async onSubmitTemplate(){
     console.log('Form submit');
     console.log(this.usuario);
+    await this.presentLoading();
+    try{
+      this.authservice.updateContato(this.usuario, this.id);
+    } catch(error){
+      console.log(error);
+    } finally{
+      this.loading.dismiss();
+    }
+  }
+
+  async presentLoading(){
+    this.loading = await this.loadingCtrl.create({message:"Por favor, aguarde ..."});
+    await this.loading.present();
   }
 }

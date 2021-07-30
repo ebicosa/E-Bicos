@@ -16,10 +16,11 @@ export class CadastroPage implements OnInit {
 
 
 
-  public generos : Array<any> = [
+  public generos: Array<any> = [
     { id: "M", text: "Masculino" },
     { id: "F", text: "Feminino" },
-    { id: "O", text: "Outro" }
+    { id: "O", text: "Outro" },
+    {id:"NI", text: "Não Informar"}
   ];
 
 
@@ -74,8 +75,9 @@ export class CadastroPage implements OnInit {
     await this.loading.present();
   }
 
-  async presentToast(message:string){
+  async presentToast(message: string){
     const toast = await this.tostctrl.create({message, duration:2000,mode: 'ios',color: 'dark'});
     toast.present();
   }
+
 }

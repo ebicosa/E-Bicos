@@ -12,36 +12,36 @@
     <ion-list>
         <ion-item lines="inset">
           <ion-icon name="compass-outline"></ion-icon>
-            <ion-input min="10000000" max="99999999"  placeholder="CEP 00000 000" (click)="Cep()" maxlength="8" inputmode="numeric" [(ngModel)]="endereco.CEP" (ionChange)="onChangeCEP($event)" required></ion-input>
+            <ion-input min="10000000" max="99999999"  placeholder="CEP 00000 000" (click)="toastCep()" maxlength="8" inputmode="numeric" [(ngModel)]="usuario.cep" name="cep" (ionChange)="onChangeCEP($event)" required></ion-input>
         </ion-item>
     </ion-list>
     <ion-list>
         <ion-item lines="inset">
             <ion-icon name="location-outline"></ion-icon>
-            <ion-input placeholder="RUA" [(ngModel)]="endereco.Rua" (ionChange)="onChangeRua($event)" required></ion-input>
+            <ion-input placeholder="RUA" name="rua" [(ngModel)]="usuario.rua" (ionChange)="onChangeRua($event)" required></ion-input>
         </ion-item>
     </ion-list>
     <ion-list >
         <ion-item lines="inset">
             <ion-icon name="locate-outline"></ion-icon>
-            <ion-input placeholder="NÚMERO" type="number" [(ngModel)]="endereco.numero" (ionChange)="onChangeNumero($event)"></ion-input>
+            <ion-input placeholder="NÚMERO" type="number" name="numero" [(ngModel)]="usuario.numero" (ionChange)="onChangeNumero($event)"></ion-input>
         </ion-item>
     </ion-list>
     <ion-list >
         <ion-item lines="inset">
             <ion-icon name="navigate-circle-outline"></ion-icon>
-            <ion-input placeholder="BAIRRO" name="Bairro"  [(ngModel)]="endereco.Bairro" (ionChange)="onChangeBairro($event)" required ></ion-input>
+            <ion-input placeholder="BAIRRO" name="bairro"  [(ngModel)]="usuario.bairro" (ionChange)="onChangeBairro($event)" required ></ion-input>
         </ion-item>
     </ion-list>
      <ion-list >
-        <ion-item lines="inset">
+        <ion-item lines="none">
             <ion-icon name="pin-outline"></ion-icon>
-            <ion-input placeholder="COMPLEMENTO"  [(ngModel)]="endereco.complemento" (ionChange)="onChangeComplemento($event)"></ion-input>
+            <ion-input placeholder="COMPLEMENTO" name="complemento"  [(ngModel)]="usuario.complemento" (ionChange)="onChangeComplemento($event)"></ion-input>
         </ion-item>
     </ion-list>
-
+    <br>
        <div class="ion-padding-vertical-x">
-            <button (click)="teste()" class="btnEntrar">
+            <button (click)="salvarDados()" class="btnEntrar">
             Concluir Cadastro
             </button>
         </div>
