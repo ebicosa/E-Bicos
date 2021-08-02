@@ -1,43 +1,52 @@
 import { DatePipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
+import { Estado, Cidade } from 'src/app/interface/localidade';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'filtros.page.html',
   styleUrls: ['filtros.page.scss'],
 })
-export class FiltrosPage {
+export class FiltrosPage implements OnInit {
   private subcategorias:JSON[];
-  private estados:JSON[];
-  private cidades:JSON[];
+  estados: Array<Estado>;
+  estado: Estado;
+  cidades: Array<Cidade>;
+  cidade: Cidade;
+  baseURL = 'https://servicodados.ibge.gov.br/api/v1/localidades';
   private faixasPrecos:JSON[];
   private selected:JSON[];
   constructor(private router: Router, private navController: NavController) {
     if(localStorage.getItem("subcategorias") === null){
       localStorage.setItem("subcategorias", JSON.stringify([{nome: "Eletricista"},{nome: "Encanador"}]));
     }
-    if(localStorage.getItem("estados") === null){
-      localStorage.setItem("estados", JSON.stringify( [{nome: "Paraíba"}, { nome: "Acre"}]));
-    }
-    if(localStorage.getItem("cidades") === null){
-      localStorage.setItem("cidades", JSON.stringify([{nome: "Campina Grande"}, { nome: "Rio Branco"}]));
-    }
     if(localStorage.getItem("faixasPrecos") === null){
       localStorage.setItem("faixasPrecos", JSON.stringify( [{minimo: 100, maximo: 1000},{minimo: 1000, maximo:5000}]));
     }
     this.subcategorias = JSON.parse(localStorage.getItem("subcategorias"));
-    this.estados = JSON.parse(localStorage.getItem("estados"));
-    this.cidades = JSON.parse(localStorage.getItem("cidades"));
     this.faixasPrecos = JSON.parse(localStorage.getItem("faixasPrecos"));
     localStorage.setItem("selected_filtrosPage", JSON.stringify([{},{},{},{},]));
     this.selected = JSON.parse(localStorage.getItem("selected_filtrosPage"));
   }
 
+  ngOnInit(){
+    fetch(`${this.baseURL}/estados?orderBy=nome`)
+      .then(response => response.json())
+      .then(result => this.estados = result);
+  }
+
   selectChanged(obj:any, indice:number){
+    if(indice === 1){
+      this.cidade = undefined;
+      document.getElementById("select-cidades").removeAttribute("disabled");
+      fetch(`${this.baseURL}/estados/${obj.id}/municipios`)
+        .then(response => response.json())
+        .then(result => this.cidades = result);
+    }
     if(indice === 4){
-      obj = new DatePipe('en-US').transform(Date.parse(obj.toString()), 'MM/dd/YYYY');
+      obj = new Date().toLocaleString();
     }
     this.selected[indice] = obj;
   }
@@ -56,7 +65,7 @@ export class FiltrosPage {
       }
       arraySelected.push(val);
     }
-    console.log(Array.isArray(arraySelected));
+
     const navigationExtras: NavigationExtras = {
       state: {
         valorParaEnviar: arraySelected,

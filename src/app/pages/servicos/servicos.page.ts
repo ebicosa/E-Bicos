@@ -36,6 +36,8 @@ export class ServicosPage implements OnInit {
             if(!(element.userId === val)) this.posts.splice(this.posts.indexOf(element), 1);
           })
           this.title = "Meus Anúncios";
+        } else{
+          this.mostraServicosFiltrados(val);
         }
       }
     });
@@ -89,6 +91,29 @@ export class ServicosPage implements OnInit {
 
   filtrarServicos() {
     this.navController.navigateForward('servicos/filtros');
+  }
+
+  mostraServicosFiltrados(array:Array<any>){
+    const filtrados = [];
+    array.forEach(element => {
+      if(element === undefined){
+        filtrados.push('');
+      }
+      else{
+        filtrados.push(element);
+      }
+    });
+    let getOptions = {
+      subcategoria: filtrados[0],
+      estado: filtrados[1],
+      cidade: filtrados[2],
+      valorMinimo: filtrados[3].minimo,
+      valorMaximo: filtrados[3].maximo,
+      data: filtrados[4]
+    };
+    this.postsService.getPostWithOptions(getOptions).subscribe(element => {
+      console.log(element.docChanges.toString())
+    })
   }
 
   async presentToast(message: string){

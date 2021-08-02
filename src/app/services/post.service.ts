@@ -36,6 +36,10 @@ export class PostService {
     return this.postsCollection.doc<Post>(id).valueChanges();
   }
 
+  getPostWithOptions(options:any){
+    return this.postsCollection.get(options);
+  }
+
   updatePost(id: string, post:Post){
     return this.postsCollection.doc<Post>(id).update(post);
   }
