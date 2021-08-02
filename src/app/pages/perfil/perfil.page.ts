@@ -36,8 +36,6 @@ export class PerfilPage implements OnInit {
           this.profile_name = this.user.nome;
         });
     });
-
-
   }
 
 
@@ -49,10 +47,10 @@ export class PerfilPage implements OnInit {
     this.navCtrl.navigateForward("endereco");
   }
 
-  onMeusAnuncios(obj){
+  async onMeusAnuncios(obj){
     const navigationExtras: NavigationExtras = {
     state: {
-      valorParaEnviar: "userId=?",
+      valorParaEnviar: `${this.id}`,
      }
     };
     this.router.navigate(['servicos'], navigationExtras);

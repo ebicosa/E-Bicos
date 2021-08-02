@@ -25,7 +25,7 @@
                 </h5>
             </ion-item>
             <ion-item lines="full" class="ion-padding-horizontal">
-                <ion-input [(ngModel)]="inputs[0]" placeholder="Ex: Procurando por pedreiro" class="ion-margin-vertical" required></ion-input>
+                <ion-input [(ngModel)]="post.titulo" placeholder="Ex: Procurando por pedreiro" class="ion-margin-vertical" required></ion-input>
             </ion-item>
         </ion-item-group>
 
@@ -36,7 +36,8 @@
                 </h5>
             </ion-item>
             <ion-item lines="full" class="ion-padding-horizontal">
-                <ion-textarea [(ngModel)]="inputs[1]" rows="6" cols="20" placeholder="Ex: Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet." class="ion-margin-vertical"></ion-textarea>
+                <ion-textarea [(ngModel)]="post.descricao" rows="6" cols="20" placeholder="Ex: Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet."
+                    class="ion-margin-vertical"></ion-textarea>
             </ion-item>
         </ion-item-group>
 
@@ -47,7 +48,7 @@
                 </h5>
             </ion-item>
             <ion-item lines="full" class="ion-padding-horizontal ion-padding-bottom select-item">
-                <ion-select [(ngModel)]="inputs[2]" (ngModelChange)="onChange($event, 2)" placeholder="Selecione aqui">
+                <ion-select [(ngModel)]="post.categoria" placeholder="Selecione aqui">
                     <ion-select-option *ngFor="let categoria of categorias;" [value]="categoria.nome">{{categoria.nome}}</ion-select-option>
                 </ion-select>
             </ion-item>
@@ -60,7 +61,7 @@
                 </h5>
             </ion-item>
             <ion-item lines="full" class="ion-padding-horizontal ion-padding-bottom select-item">
-                <ion-select [(ngModel)]="inputs[3]" (ngModelChange)="onChange($event, 3)" placeholder="Selecione aqui">
+                <ion-select [(ngModel)]="post.subcategoria" placeholder="Selecione aqui">
                     <ion-select-option *ngFor="let subcategoria of subcategorias;" [value]="subcategoria.nome">{{subcategoria.nome}}</ion-select-option>
                 </ion-select>
             </ion-item>
@@ -74,7 +75,7 @@
             </ion-item>
             <ion-item lines="none" class="ion-padding-horizontal ion-padding-bottom select-item">
 
-                <ion-select [(ngModel)]="inputs[4]" (ngModelChange)="onChange($event, 4)" placeholder="Selecione aqui" class="ion-no-padding ion-padding-horizontal padding-vertical">
+                <ion-select [(ngModel)]="valor" (ngModelChange)="onChange($event)" placeholder="Selecione aqui" class="ion-no-padding ion-padding-horizontal padding-vertical">
                     <ion-select-option *ngFor="let faixaPreco of faixasPrecos;" [value]="faixaPreco">R${{faixaPreco.minimo}},00 - R${{faixaPreco.maximo}},00</ion-select-option>
                 </ion-select>
             </ion-item>
@@ -82,7 +83,7 @@
 
         <ion-item-group>
             <ion-item lines="none" class="ion-no-padding ion-padding-vertical">
-                <ion-button expand="block" color="success" class="ion-text-center ion-padding-horizontal" (click)="onPostar()">Postar</ion-button>
+                <ion-button expand="block" color="success" class="ion-text-center ion-padding-horizontal" (click)="onPostar()">{{buttonName}}</ion-button>
             </ion-item>
             <h6 class="ion-no-margin ion-margin-bottom ion-padding-bottom ion-padding-start">Ao publicar você concorda e aceita nossos
                 <p class="ion-no-margin"><a href="">Termos de Uso</a> e <a href="">Privacidade </a></p>
