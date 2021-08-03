@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { NavController, ToastController } from '@ionic/angular';
+import { Subscription } from 'rxjs';
+import { Post } from 'src/app/interface/post';
+import { PostService } from 'src/app/services/post.service';
 
 @Component({
   selector: 'app-servicos',
@@ -9,125 +12,75 @@ import { NavController } from '@ionic/angular';
 })
 export class ServicosPage implements OnInit {
 
-  cards = [];
-  title = "Serviços"
+  public posts = new Array<Post>();
+  private postsSubscription: Subscription;
 
-  constructor(private route: ActivatedRoute, private router: Router, private navController: NavController) {
+  title = "Serviços";
+
+  constructor(
+    private postsService: PostService,
+    private route: ActivatedRoute, 
+    private router: Router,
+    private navController: NavController,
+    private tostctrl: ToastController) {
+
+    this.postsSubscription = this.postsService.getPosts().subscribe(dados => {
+      this.posts = dados;
+    })
     this.route.queryParams.subscribe(params => {
       let getNav = this.router.getCurrentNavigation();
       if (getNav.extras.state) {
         let val = getNav.extras.state.valorParaEnviar;
-        if(!(Array.isArray(val)))
+        if(!(Array.isArray(val))){
+          this.posts.forEach(element =>{
+            if(!(element.userId === val)) this.posts.splice(this.posts.indexOf(element), 1);
+          })
           this.title = "Meus Anúncios";
+        } else{
+          this.mostraServicosFiltrados(val);
+        }
       }
     });
-    if(localStorage.getItem('cards') === null) {
-
-    localStorage.setItem('cards', JSON.stringify([
-
-    {
-      autor: 'Carla Suelen',
-      categoria:'Construção civil',
-      subcategoria: 'Pedreiro',
-      descricao: 'Preciso de pedreiro para construir duas paredes.',
-      valor: '',
-      cep: '58400001',
-      cidade: 'Campina Grande',
-      bairro: 'Centro',
-      logradouro: 'Rua Marciel Pinheiro',
-      estado: 'PB',
-      data: '24/01/2021',
-      favorito: false,
-      id: 1
-    },
-    {
-      autor: 'Marilene Sobral',
-      categoria:'Serviços domésticos',
-      subcategoria: 'Babá',
-      descricao: 'Preciso de babá para cuidar de criança hoje a noite.',
-      valor: 75,
-      cep: '58400002',
-      cidade: 'Esperança',
-      bairro: 'Fictício1',
-      logradouro: 'Projetada1',
-      estado: 'PB',
-      data: '26/01/2021',
-      favorito: false,
-      id: 2
-    },
-    {
-      autor: 'Bruno Pereira',
-      categoria:'Assistência técnica',
-      subcategoria: 'Geladeira',
-      descricao: 'Preciso de técnico para consertar geladeira com defeito.',
-      valor: 100,
-      cep: '58400003',
-      cidade: 'Campina Grande',
-      bairro: 'Dinamérica',
-      logradouro: 'Rua Tranquilino Coelho Lemos',
-      estado: 'PB',
-      data: '28/01/2021',
-      favorito: false,
-      id: 3
-    },
-    {
-      autor: 'Rodrigo Alves',
-      categoria:'Eventos',
-      subcategoria: 'Segurança',
-      descricao: 'Preciso de segurança para trabalhar em festa privada.',
-      valor: 200,
-      cep: '58400004',
-      cidade: 'Remígio',
-      bairro: 'Fictício2',
-      logradouro: 'Projetada2',
-      estado: 'PB',
-      data: '26/01/2021',
-      favorito: false,
-      id: 4
-
-    }
-  ]));
-
-}
-
-this.cards = JSON.parse(localStorage.getItem('cards'));
-
-
-this.cards = JSON.parse(localStorage.getItem('cards'));
-
-if(!(localStorage.getItem('nova_postagem') === null)){
-  this.cards.push(JSON.parse(localStorage.getItem('nova_postagem')));
-  localStorage.setItem('nova_postagem', null);
-}
   }
 
   ngOnInit() {
   }
 
-  adicionaServico() {
-    if(!(localStorage.getItem('nova_postagem') === null)){
-      this.cards.push(JSON.parse(localStorage.getItem('nova_postagem')));
+  ngOnDestroy() {
+    this.postsSubscription.unsubscribe();
+  }
+
+  async deletaAnuncio(id: string) {
+    try {
+      await this.postsService.deletePost(id);
+    } catch (error) {
+      this.presentToast('Erro ao tentar deletar');
     }
   }
 
-  alteraFavorito(card: any) {
-    this.cards.forEach(element => {
-      if (element.id === card.id) {
-        element.favorito = !element.favorito;
-        localStorage.setItem('cards', JSON.stringify(this.cards));
-      }
-    });
+  alteraFavorito(post: Post) {
+    this.posts.forEach(element => {if (element.id === post.id) element.favorito = !element.favorito;});
   }
 
-  abreAnuncio(card: any) {
-    this.cards.forEach(element => {
-      if (element.id === card.id) {
-        const navigationExtras: NavigationExtras = {
-          state: {
-            valorParaEnviar: element,
-          }
-        };
-        this.router.navigate(['anuncio'], navigationExtras);
+  abreAnuncio(post: Post) {
+    this.posts.forEach(element => {
+      if (element.id === post.id) {
+        if(element.userId === post.userId){
+          const navigationExtras: NavigationExtras = {
+            state: {
+              valorParaEnviar: element,
+              postId: element.id,
+            }
+          };
+          this.router.navigate(['inserir-servico'], navigationExtras);
+        } else{
+          const navigationExtras: NavigationExtras = {
+            state: {
+              valorParaEnviar: element,
+            }
+          };
+          this.router.navigate(['anuncio'], navigationExtras);
+        }
       }
     });
   }
@@ -138,5 +91,33 @@ if(!(localStorage.getItem('nova_postagem') === null)){
 
   filtrarServicos() {
     this.navController.navigateForward('servicos/filtros');
+  }
+
+  mostraServicosFiltrados(array:Array<any>){
+    const filtrados = [];
+    array.forEach(element => {
+      if(element === undefined){
+        filtrados.push('');
+      }
+      else{
+        filtrados.push(element);
+      }
+    });
+    let getOptions = {
+      subcategoria: filtrados[0],
+      estado: filtrados[1],
+      cidade: filtrados[2],
+      valorMinimo: filtrados[3].minimo,
+      valorMaximo: filtrados[3].maximo,
+      data: filtrados[4]
+    };
+    this.postsService.getPostWithOptions(getOptions).subscribe(element => {
+      console.log(element.docChanges.toString())
+    })
+  }
+
+  async presentToast(message: string){
+    const toast = await this.tostctrl.create({message, duration:2000,mode: 'ios',color: 'dark'});
+    toast.present();
   }
 }

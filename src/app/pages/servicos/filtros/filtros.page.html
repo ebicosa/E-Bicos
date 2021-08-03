@@ -3,7 +3,7 @@
         <ion-buttons slot="start">
             <ion-back-button text="" mode="md" defaultHref="servicos"></ion-back-button>
         </ion-buttons>
-        <ion-title slot="start" >
+        <ion-title slot="start">
             Filtros
         </ion-title>
     </ion-toolbar>
@@ -50,7 +50,7 @@
                 Cidade</ion-label>
             <ion-item lines="none">
                 <ion-icon slot="start" icon="location-outline"></ion-icon>
-                <ion-select placeholder="Selecione aqui" [(ngModel)]="selected[2]" (ngModelChange)="selectChanged($event, 2)">
+                <ion-select id="select-cidades" disabled placeholder="Selecione aqui" [(ngModel)]="selected[2]" (ngModelChange)="selectChanged($event, 2)">
                     <ion-select-option *ngFor="let cidade of cidades" [value]="cidade">{{cidade.nome}}</ion-select-option>
                 </ion-select>
             </ion-item>
