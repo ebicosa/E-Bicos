@@ -15,10 +15,10 @@ export class EntrarPage implements OnInit {
   public usuario: User = {};
   public loading: any;
 
-  constructor(private navCtrl : NavController ,
-    private loadingCtrl : LoadingController,
+  constructor(private navCtrl: NavController ,
+    private loadingCtrl: LoadingController,
     private tostctrl: ToastController,
-    private authservice : AuthService) {}
+    private authservice: AuthService) {}
 
   ngOnInit() {
   }
@@ -63,7 +63,7 @@ export class EntrarPage implements OnInit {
     await this.loading.present();
   }
 
-  async presentToast(message:string){
+  async presentToast(message: string){
     const toast = await this.tostctrl.create({message, duration:2000,mode: 'ios',color: 'dark'});
     toast.present();
   }

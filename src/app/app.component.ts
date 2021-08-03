@@ -9,8 +9,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit{
 
-  private nome_de_perfil: string;
-  private e_mail: string;
   public loading: any;
 
   public appPages = [
@@ -24,15 +22,19 @@ export class AppComponent implements OnInit{
     { title: 'Termos de uso', url: 'termos-de-uso', icon: '' },
   ];
 
-  constructor(private loadingCtrl : LoadingController,
+  private nome_de_perfil: string;
+  private e_mail: string;
+
+
+  constructor(private loadingCtrl: LoadingController,
     private tostctrl: ToastController,
-    private authservice : AuthService) {
+    private authservice: AuthService) {
     if(localStorage.getItem('profile_name') === null){
-      localStorage.setItem('profile_name', 'Victor Emanuel');
+      localStorage.setItem('profile_name', 'Usuario Logado');
     }
     this.nome_de_perfil = localStorage.getItem('profile_name');
     if(localStorage.getItem('e_mail') === null){
-      localStorage.setItem('e_mail', 'nome.sobrenome@gmail.com');
+      localStorage.setItem('e_mail', 'exemple@gmail.com');
     }
     this.e_mail = localStorage.getItem('e_mail');
   }

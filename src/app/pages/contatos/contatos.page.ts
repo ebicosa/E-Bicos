@@ -41,11 +41,10 @@ export class ContatosPage implements OnInit {
   }
 
   async onSubmitTemplate(){
-    console.log('Form submit');
-    console.log(this.usuario);
     await this.presentLoading();
     try{
       this.authservice.updateContato(this.usuario, this.id);
+      this.navCtrl.navigateForward('perfil');
     } catch(error){
       console.log(error);
     } finally{

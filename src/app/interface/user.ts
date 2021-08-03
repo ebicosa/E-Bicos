@@ -6,6 +6,8 @@ export interface User {
   data?: any;
   genero?: string;
   cep?: string;
+  uf?: string;
+  cidade?: string;
   rua?: string;
   numero?: string;
   bairro?: string;

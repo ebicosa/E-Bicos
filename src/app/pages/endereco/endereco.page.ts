@@ -13,6 +13,8 @@ export class EnderecoPage implements OnInit {
 
   usuario  = {
     cep: '',
+    uf: '',
+    cidade: '',
     rua:'',
     numero: '',
     complemento: '',
@@ -32,6 +34,8 @@ export class EnderecoPage implements OnInit {
         this.afs.collection('Users').doc(this.id).valueChanges().subscribe(result => {
           this.user = result;
           this.usuario.cep = this.user.cep;
+          this.usuario.uf = this.user.uf;
+          this.usuario.cidade = this.user.cidade;
           this.usuario.rua = this.user.rua;
           this.usuario.numero = this.user.numero;
           this.usuario.complemento = this.user.complemento;
@@ -67,6 +71,12 @@ export class EnderecoPage implements OnInit {
 
   onChangeComplemento(event){
     this.usuario.complemento = (event.target.value);
+  }
+  onChangeEstado(event){
+    this.usuario.uf = (event.target.value);
+  }
+  onChangeCidade(event){
+    this.usuario.cidade = (event.target.value);
   }
 
   async onChangeBairro(event){

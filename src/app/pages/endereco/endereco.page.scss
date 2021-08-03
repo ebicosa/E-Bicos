@@ -36,4 +36,6 @@ ion-input{
   margin-bottom: 15px;
 
 }
-
+.btnEntrar[disabled] {
+  background: rgb(110, 110, 110);
+}

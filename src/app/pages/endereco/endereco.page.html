@@ -8,6 +8,7 @@
 </ion-header>
 
 <ion-content>
+
     <ion-item-group>
     <ion-list>
         <ion-item lines="inset">
@@ -18,9 +19,23 @@
     <ion-list>
         <ion-item lines="inset">
             <ion-icon name="location-outline"></ion-icon>
+            <ion-input placeholder="Estado" name="uf" [(ngModel)]="usuario.uf" (ionChange)="onChangeEstado($event)" required></ion-input>
+        </ion-item>
+    </ion-list>
+
+    <ion-list>
+        <ion-item lines="inset">
+            <ion-icon name="location-outline"></ion-icon>
+            <ion-input placeholder="Cidade" name="cidade" [(ngModel)]="usuario.cidade" (ionChange)="onChangeCidade($event)" required></ion-input>
+        </ion-item>
+    </ion-list>
+    <ion-list>
+        <ion-item lines="inset">
+            <ion-icon name="location-outline"></ion-icon>
             <ion-input placeholder="RUA" name="rua" [(ngModel)]="usuario.rua" (ionChange)="onChangeRua($event)" required></ion-input>
         </ion-item>
     </ion-list>
+
     <ion-list >
         <ion-item lines="inset">
             <ion-icon name="locate-outline"></ion-icon>
@@ -46,4 +61,5 @@
             </button>
         </div>
   </ion-item-group>
+
 </ion-content>

@@ -22,11 +22,7 @@ export class PerfilPage implements OnInit {
 
   constructor(private router: Router, private navCtrl: NavController,
     private authservice: AuthService, private afs: AngularFirestore) {
-
-    }
-
-  ngOnInit() {
-    //Utilizando funçao getUser() para retornar Promise com ID do usuario logado no sistema
+      //Utilizando funçao getUser() para retornar Promise com ID do usuario logado no sistema
     const dado = this.authservice.getUser();
     Promise.resolve(dado).then(result => {
         this.id = result;
@@ -37,7 +33,9 @@ export class PerfilPage implements OnInit {
         });
     });
 
+    }
 
+  ngOnInit() {
   }
 
 
