@@ -11,18 +11,39 @@ export class CancelarCadastroPage implements OnInit {
 
 
   public loading: any;
-
-  constructor(private loadingCtrl : LoadingController,
-    private authservice : AuthService) { }
+  public mensagem = {
+    motivo: '',
+    tempo: '',
+    nota: '',
+    comentario:''
+  };
+  constructor(private loadingCtrl: LoadingController,
+    private authservice: AuthService) { }
 
    ngOnInit() {
   }
 
+  onChangeMotivo(event){
+    this.mensagem.motivo = (event.target.value);
+  }
+  onChangeTempo(event){
+    this.mensagem.tempo = (event.target.value);
+  }
+  onChangeNota(event){
+    this.mensagem.nota = (event.target.value);
+  }
+  onChangeComentario(event){
+    this.mensagem.comentario = (event.target.value);
+  }
 
-  async Descadastar(){
+  async descadastar(){
     await this.presentLoading();
     try{
-      await this.authservice.logout();
+      if(this.mensagem.tempo === "Permanente"){
+        await this.authservice.delete();
+      }else{
+        await this.authservice.logout();
+      }
     } catch(error){
       console.log(error);
     } finally{

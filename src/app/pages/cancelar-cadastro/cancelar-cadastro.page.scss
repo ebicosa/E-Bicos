@@ -37,3 +37,6 @@ ion-input{
   border-radius: 30px 30px;
   margin-bottom: 15px;
 }
+.btn[disabled]{
+  background: black;
+}

@@ -17,32 +17,52 @@
       placeholder="Qual o motivo para excluir sua conta ?"
       disabled
     ></ion-input>
-    <ion-radio-group>
+    <ion-radio-group (ionChange)="onChangeMotivo($event)">
       <ion-item>
         <ion-label>Não gostei do aplicativo</ion-label>
-        <ion-radio mode="md" value="nga"></ion-radio>
+        <ion-radio mode="md" value="Não gostei do aplicativo"></ion-radio>
       </ion-item>
 
       <ion-item>
         <ion-label>Não tive retorno do aplicativo</ion-label>
-        <ion-radio mode="md" value="ntra"></ion-radio>
+        <ion-radio mode="md" value="Não tive retorno do aplicativo"></ion-radio>
       </ion-item>
 
       <ion-item>
         <ion-label>Aplicativo apresenta muitos erros</ion-label>
-        <ion-radio mode="md" value="aame"></ion-radio>
+        <ion-radio mode="md" value="Aplicativo apresenta muitos erros"></ion-radio>
       </ion-item>
 
       <ion-item lines="none">
         <ion-label>Não sei o motivo</ion-label>
-        <ion-radio mode="md" value="nsm"></ion-radio>
+        <ion-radio mode="md" value="Não sei o motivo"></ion-radio>
       </ion-item>
     </ion-radio-group>
 
+    <ion-input
+      placeholder="Por quanto tempo vai desativar sua conta ?"
+      disabled
+    ></ion-input>
+    <ion-radio-group (ionChange)="onChangeTempo($event)" >
+      <ion-item>
+        <ion-label>Permanente</ion-label>
+        <ion-radio mode="md" value="Permanente"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Não sei</ion-label>
+        <ion-radio mode="md" value="Não sei"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Pouco tempo</ion-label>
+        <ion-radio mode="md" value="Pouco tempo"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
 
     <ion-input placeholder="Você recomendaria o E-BICOS ?" disabled></ion-input>
     <ion-item lines="none">
-      <ion-range min="0" max="10" snaps="true" color="danger">
+      <ion-range min="0" max="10" snaps="true" color="danger" (ionChange)="onChangeNota($event)">
         <ion-label slot="start">Não</ion-label>
         <ion-label slot="end">Sim</ion-label>
       </ion-range>
@@ -50,12 +70,13 @@
     <ion-input placeholder="Diganos sua opnião sobre o aplicativo !" disabled></ion-input>
     <br>
   <ion-item lines="none">
-    <ion-textarea placeholder="Digite aqui ...." rows="8  "> </ion-textarea>
+    <ion-textarea placeholder="Digite aqui ...." rows="8" (ionChange)="onChangeComentario($event)"> </ion-textarea>
   </ion-item>
 
 
   </ion-list>
   <div class="n3">
-    <button class="btn" (click)="Descadastar()">Descadastar</button>
+    <button class="btn" (click)="descadastar()">Descadastar</button>
   </div>
 </ion-content>
+

@@ -25,6 +25,12 @@ export class AuthService {
     return this.afa.signOut();
   }
 
+  async delete(){
+    const id = await (await this.afa.currentUser).uid;
+    this.afs.collection('Users').doc(id).delete();
+    return (await this.afa.currentUser).delete();
+  }
+
   getAuth(){
     return this.afa;
   }
