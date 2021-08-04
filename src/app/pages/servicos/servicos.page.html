@@ -19,7 +19,7 @@
     <ion-card *ngFor="let post of posts">
         <ion-item lines="full">
             <ion-card-subtitle (click)="abreAnuncio(post)">{{post.categoria}}</ion-card-subtitle>
-            <ion-button fill="clear" slot="end" (click)="deletaAnuncio(post.id)">
+            <ion-button *ngIf="post.userId === idUserLogado" fill="clear" slot="end" (click)="presentAlertConfirm(post.id)">
                 <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
             </ion-button>
             <ion-button fill="clear" slot="end">

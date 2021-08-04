@@ -37,7 +37,29 @@ export class PostService {
   }
 
   getPostWithOptions(options:any){
-    return this.postsCollection.get(options);
+    let collections = this.postsCollection;
+    let collection:any = undefined;
+    Object.keys(options).forEach(function(chave) {
+      let valor = options[chave];
+      if(!(valor === 'undefined' || valor === undefined))
+        if(collection == undefined){
+          collection = collections.ref.where(chave, '==', valor);
+        }
+        else{
+          collection = collection.where(chave, '==', valor);
+        }
+    })
+    let posts:any = [];
+    if(!(collection === undefined)){
+      collection = collection.get();
+      collection.then(snapshot =>{
+        snapshot.docs.forEach(doc => {
+          posts.push(doc.data());
+        });
+      });
+    }
+    else return undefined;
+    return posts;
   }
 
   updatePost(id: string, post:Post){

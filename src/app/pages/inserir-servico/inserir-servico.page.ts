@@ -23,6 +23,7 @@ export class InserirServicoPage implements OnInit {
   private postSubscription: Subscription;
   public loading:any;
   public buttonName: string;
+  public title: string;
 
   faixasPrecos;
   categorias;
@@ -54,12 +55,15 @@ export class InserirServicoPage implements OnInit {
           this.postId = getNav.extras.state.postId;
           if(this.postId){
             this.buttonName = "Salvar Alterações";
+            this.title = "Editar Anúncio";
             this.loadPost();
           }
           else{
+            this.title = "Inserir Anúncio";
             this.buttonName = "Postar";
           }
         }else{
+          this.title = "Inserir Anúncio";
           this.buttonName = "Postar";
         }
       });
@@ -102,6 +106,7 @@ export class InserirServicoPage implements OnInit {
       this.camera.getPicture(options).then((imageData) => {
         // imageData is either a base64 encoded string or a file URI
         this.croppedImagePath = 'data:image/jpeg;base64,' + imageData;
+        this.post.foto = this.croppedImagePath;
       }, (err) => {
         // Handle error
       });
@@ -158,10 +163,12 @@ export class InserirServicoPage implements OnInit {
               this.loading.dismiss();
             }
           } else{
-            this.post.data = new Date().toLocaleString();
+            this.post.data = new Date().toLocaleString().split(" ")[0];
             if (user.cep) this.post.cep = user.cep;
             if (user.bairro) this.post.bairro = user.bairro;
-            //Faltando cidade, estado, logradouro
+            if (user.cidade) this.post.cidade.nome = user.cidade;
+            if (user.uf) this.post.estado.sigla = user.uf;
+            if (user.rua) this.post.logradouro = user.rua;
             try{
               await this.postsService.addPost(this.post);
               this.navCtrl.navigateBack('servicos');

@@ -11,11 +11,12 @@ import { Estado, Cidade } from 'src/app/interface/localidade';
 })
 export class FiltrosPage implements OnInit {
   private subcategorias:JSON[];
-  estados: Array<Estado>;
-  estado: Estado;
-  cidades: Array<Cidade>;
-  cidade: Cidade;
-  baseURL = 'https://servicodados.ibge.gov.br/api/v1/localidades';
+  public estados: Array<Estado>;
+  public estado: Estado;
+  public cidades: Array<Cidade>;
+  public cidade: Cidade;
+  public baseURL = 'https://servicodados.ibge.gov.br/api/v1/localidades';
+  public data:Date;
   private faixasPrecos:JSON[];
   private selected:JSON[];
   constructor(private router: Router, private navController: NavController) {
@@ -45,9 +46,7 @@ export class FiltrosPage implements OnInit {
         .then(response => response.json())
         .then(result => this.cidades = result);
     }
-    if(indice === 4){
-      obj = new Date().toLocaleString();
-    }
+    if(indice === 4) obj = new Date(this.data).toLocaleString();
     this.selected[indice] = obj;
   }
 
