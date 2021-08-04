@@ -16,7 +16,6 @@ export class ServicosPage implements OnInit {
 
   public posts = new Array<Post>();
   private postsSubscription: Subscription;
-  private postFromUser:boolean;
   private idUserLogado:string;
 
   title = "Serviços";
@@ -70,7 +69,9 @@ export class ServicosPage implements OnInit {
   }
 
   alteraFavorito(post: Post) {
-    this.posts.forEach(element => {if (element.id === post.id) element.favorito = !element.favorito;});
+    if(!post.favorito) post.favorito = true;
+    else post.favorito = false;
+    this.postsService.updatePost(post.id, post);
   }
 
   abreAnuncioEdicao(post:Post){

@@ -3,7 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Camera, CameraOptions } from '@ionic-native/Camera/ngx';
 import { File } from '@ionic-native/file/ngx';
-import { ActionSheetController, NavController, LoadingController, ToastController } from '@ionic/angular';
+import { ActionSheetController, NavController, LoadingController, ToastController, AlertController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { Post } from 'src/app/interface/post';
 import { User } from 'src/app/interface/user';
@@ -41,7 +41,8 @@ export class InserirServicoPage implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private postsService: PostService,
-    public actionSheetController: ActionSheetController,
+    private actionSheetController: ActionSheetController,
+    private alertController: AlertController,
     private navCtrl : NavController,
     private loadingCtrl : LoadingController,
     private tostctrl: ToastController,
@@ -182,6 +183,8 @@ export class InserirServicoPage implements OnInit {
         });
       });
       
+    } else{
+        this.presentAlertConfirm();
     }
   }
 
@@ -198,5 +201,22 @@ export class InserirServicoPage implements OnInit {
   async presentToast(message: string){
     const toast = await this.tostctrl.create({message, duration:2000,mode: 'ios',color: 'dark'});
     toast.present();
+  }
+
+  async presentAlertConfirm() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Serviço não postado',
+      message: '<strong>Por favor, preencha todas as informações antes de postar o serviço</strong>!!!',
+      buttons: [
+        {
+          text: 'Ok',
+          handler: () => {
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 }
