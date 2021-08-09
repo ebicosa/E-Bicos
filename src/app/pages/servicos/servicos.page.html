@@ -15,7 +15,7 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="posts.length != 0">
     <ion-card *ngFor="let post of posts">
         <ion-item lines="full">
             <ion-card-subtitle (click)="abreAnuncio(post)">{{post.categoria}}</ion-card-subtitle>
@@ -53,4 +53,8 @@
         </ion-grid>
     </ion-card>
 
+</ion-content>
+
+<ion-content *ngIf="posts.length == 0">
+    <ion-label>Não existem serviços!</ion-label>
 </ion-content>

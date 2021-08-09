@@ -12,10 +12,11 @@ export class AppComponent implements OnInit{
   public loading: any;
 
   public appPages = [
-    { title: 'Postar serviço', url: 'inserir-servico', icon: 'briefcase-outline' },
+    { title: 'Serviços', url: 'servicos', icon: 'briefcase-outline' },
+    { title: 'Postar serviço', url: 'inserir-servico', icon: 'medkit-outline' },
     { title: 'Minha conta', url: 'perfil', icon: 'person-circle-outline' },
     { title: 'Favoritos', url: 'favoritos', icon: 'heart-outline' },
-    {title: 'Descadastrar', url : 'cancelar-cadastro',icon: 'close-outline'},
+    { title: 'Descadastrar', url : 'cancelar-cadastro',icon: 'close-outline'},
     { title: 'Central de ajuda', url: 'central-ajuda', icon: '' },
     { title: 'Sobre o E-Bicos', url: 'quem-somos', icon: '' },
     { title: 'Dicas de segurança', url: '', icon: '' },
