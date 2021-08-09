@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+
+import { Component, OnInit, SystemJsNgModuleLoader } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 import { ActionSheetController, AlertController, NavController, ToastController } from '@ionic/angular';
-import { Subscription } from 'rxjs';
+import { range, Subscription } from 'rxjs';
+import { Favourite } from 'src/app/interface/favourite';
 import { Post } from 'src/app/interface/post';
 import { AuthService } from 'src/app/services/auth.service';
+import { FavouriteService } from 'src/app/services/favourites.service';
 import { PostService } from 'src/app/services/post.service';
 
 @Component({
@@ -15,13 +18,17 @@ import { PostService } from 'src/app/services/post.service';
 export class ServicosPage implements OnInit {
 
   public posts = new Array<Post>();
+  public favourites = new Array<Favourite>();
+  public favourite: Favourite = {};
   private postsSubscription: Subscription;
+  private favouritesSubscription: Subscription;
   private idUserLogado:string;
 
   title = "Serviços";
 
   constructor(
     private postsService: PostService,
+    private favouriteService: FavouriteService,
     private route: ActivatedRoute,
     private alertController: AlertController,
     private authservice: AuthService,
@@ -48,6 +55,8 @@ export class ServicosPage implements OnInit {
         })
       }
     });
+
+    this.atualizaFavoritos();
   }
 
   ngOnInit() {
@@ -56,6 +65,8 @@ export class ServicosPage implements OnInit {
   ngOnDestroy() {
     if(this.postsSubscription)
       this.postsSubscription.unsubscribe();
+    if(this.favouritesSubscription)
+      this.favouritesSubscription.unsubscribe();
   }
 
   
@@ -68,10 +79,27 @@ export class ServicosPage implements OnInit {
     }
   }
 
+  /**
+   * A função, quando chamada, altera o status de favorito do anúncio (post). Se ele não estiver favoritado
+   * por aquele usuário, então ele não existe na lista de favoritos. Neste caso, ele adiciona o favorito.
+   * Se ele estiver favoritado, então ele existe na lista de favoritos. Neste caso, ele remove o favorito.
+   * O relacionamento é do tipo muitos para muitos, onde um usuário pode favoritas vários anúncios, e um anúncio
+   * pode ser favoritado por vários usuários. A tabela Favourites relaciona os usuários com seus favoritos.
+   * @param post - anúncio a ser favoritado ou desfavoritado
+   */
   alteraFavorito(post: Post) {
-    if(!post.favorito) post.favorito = true;
-    else post.favorito = false;
-    this.postsService.updatePost(post.id, post);
+    for (let favourite of this.favourites) {
+      if (favourite.idPost == post.id && favourite.idUser == this.idUserLogado) {
+        this.favouriteService.delFavourite(favourite.id);
+        return;
+      }
+    }
+
+    this.favourite.idUser = this.idUserLogado;
+    this.favourite.idPost = post.id;
+    this.favouriteService.addFavourite(this.favourite);
+
+    this.atualizaFavoritos();
   }
 
   abreAnuncioEdicao(post:Post){
@@ -140,6 +168,12 @@ export class ServicosPage implements OnInit {
       }
         
     }
+  }
+
+  private atualizaFavoritos() {
+    this.favouritesSubscription = this.favouriteService.getFavourites().subscribe(dados => {
+      this.favourites = dados;
+    })
   }
 
   isFromThisUser(post:Post){
