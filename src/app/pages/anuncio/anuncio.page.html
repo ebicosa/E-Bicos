@@ -6,8 +6,8 @@
     <ion-title slot="start">Anúncio</ion-title>
     <ion-button fill="clear" slot="end" (click)="alteraFavorito(card)">
       <ion-icon slot="icon-only"
-      [class]="card.favorito ? 'heartSelected' : 'heartUnselected'"
-      [name]="card.favorito ? 'heart' : 'heart-outline'"></ion-icon>
+      [class]="existeFavorito(card.id) ? 'heartSelected' : 'heartUnselected'"
+      [name]="existeFavorito(card.id) ? 'heart' : 'heart-outline'"></ion-icon>
     </ion-button>
     <ion-button fill="clear" slot="end">
       <ion-icon slot="icon-only" name="share-social-outline" style="color: white"></ion-icon>

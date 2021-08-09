@@ -35,7 +35,6 @@ export class FavouriteService {
     );
   }
 
-  //NÃO ESTÁ DELETANDO LEVANDO EM CONSIDERAÇÃO O ID DO POST, MAS SIM O ID DO FAVOURITE
   delFavourite(id:string){
     return this.favouritesCollection.doc(id).delete();
   }

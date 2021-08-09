@@ -3,7 +3,7 @@ import { Component, OnInit, SystemJsNgModuleLoader } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 import { ActionSheetController, AlertController, NavController, ToastController } from '@ionic/angular';
-import { range, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { Favourite } from 'src/app/interface/favourite';
 import { Post } from 'src/app/interface/post';
 import { AuthService } from 'src/app/services/auth.service';
@@ -56,7 +56,7 @@ export class ServicosPage implements OnInit {
       }
     });
 
-    this.atualizaFavoritos();
+    this.atualizaListaDeFavoritos();
   }
 
   ngOnInit() {
@@ -68,8 +68,6 @@ export class ServicosPage implements OnInit {
     if(this.favouritesSubscription)
       this.favouritesSubscription.unsubscribe();
   }
-
-  
 
   async deletaAnuncio(id: string) {
     try {
@@ -99,7 +97,16 @@ export class ServicosPage implements OnInit {
     this.favourite.idPost = post.id;
     this.favouriteService.addFavourite(this.favourite);
 
-    this.atualizaFavoritos();
+    this.atualizaListaDeFavoritos();
+  }
+
+  existeFavorito(idFav: string, idUser: string) {
+    for (let favourite of this.favourites) {
+      if (favourite.idPost == idFav && favourite.idUser == idUser) {
+        return true;
+      }
+    }
+    return false;
   }
 
   abreAnuncioEdicao(post:Post){
@@ -170,7 +177,7 @@ export class ServicosPage implements OnInit {
     }
   }
 
-  private atualizaFavoritos() {
+  private atualizaListaDeFavoritos() {
     this.favouritesSubscription = this.favouriteService.getFavourites().subscribe(dados => {
       this.favourites = dados;
     })

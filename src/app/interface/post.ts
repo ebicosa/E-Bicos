@@ -14,7 +14,6 @@ export interface Post {
     logradouro?: string;
     estado?: Estado;
     data?: any;
-    favorito?: boolean;
     foto?: any;
     titulo?: string;
     userId?: any;

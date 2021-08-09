@@ -26,7 +26,7 @@
                 <ion-icon slot="icon-only" name="share-social-outline"></ion-icon>
             </ion-button>
             <ion-button fill="clear" slot="end" (click)="alteraFavorito(post)">
-                <ion-icon slot="icon-only" [class]="post.favorito ? 'heartSelected' : ''" [name]="post.favorito ? 'heart' : 'heart-outline'"></ion-icon>
+                <ion-icon slot="icon-only" [class]="existeFavorito(post.id, idUserLogado) ? 'heartSelected' : ''" [name]="existeFavorito(post.id, idUserLogado) ? 'heart' : 'heart-outline'"></ion-icon>
             </ion-button>
         </ion-item>
 
