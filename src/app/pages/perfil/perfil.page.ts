@@ -53,7 +53,7 @@ export class PerfilPage implements OnInit {
       valorParaEnviar: `${this.id}`,
      }
     };
-    this.router.navigate(['servicos'], navigationExtras);
+    this.router.navigate(['servicos/meusAnuncios'], navigationExtras);
   }
 
   onContatos(obj){

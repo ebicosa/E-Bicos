@@ -33,6 +33,13 @@ const routes: Routes = [
 
   },
   {
+    path: 'servicos/filtros/:nome',
+
+    loadChildren: () => import('./pages/servicos/filtros/filtros.module').then( m => m.FiltrosPageModule),
+    canActivate : [AuthGuard]
+
+  },
+  {
     path: 'recuperar-senha',
     loadChildren: () => import('./pages/recuperar-senha/recuperar-senha.module').then( m => m.RecuperarSenhaPageModule),
     canActivate : [LoginGuard]
@@ -44,6 +51,11 @@ const routes: Routes = [
   },
   {
     path: 'servicos',
+    loadChildren: () => import('./pages/servicos/servicos.module' ).then( m => m.ServicosPageModule),
+    canActivate : [AuthGuard]
+  },
+  {
+    path: 'servicos/:nome',
     loadChildren: () => import('./pages/servicos/servicos.module' ).then( m => m.ServicosPageModule),
     canActivate : [AuthGuard]
   },

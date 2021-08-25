@@ -71,7 +71,7 @@
             <ion-item lines="none">
                 <ion-icon slot="start" icon="pricetags"></ion-icon>
                 <ion-select placeholder="Selecione aqui" [(ngModel)]="selected[3]" (ngModelChange)="selectChanged($event, 3)">
-                    <ion-select-option *ngFor="let faixaPreco of faixasPrecos" [value]="faixaPreco">R${{faixaPreco.minimo}},00 - R${{faixaPreco.maximo}},00</ion-select-option>
+                    <ion-select-option *ngFor="let faixaPreco of faixasPrecos" [value]="faixaPreco">{{faixaPreco.minimo}} - {{faixaPreco.maximo}}</ion-select-option>
                 </ion-select>
             </ion-item>
         </ion-list>

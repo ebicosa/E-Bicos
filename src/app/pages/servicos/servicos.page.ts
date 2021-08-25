@@ -47,6 +47,8 @@ export class ServicosPage implements OnInit {
           this.posts = await this.postsService.getPostWithOptions({userId:val});
           this.title = "Meus Anúncios";
         } else{
+          if(this.router.url.endsWith("meusAnuncios"))
+            this.title = "Meus Anúncios";
           this.mostraServicosFiltrados(val);
         }
       } else{
@@ -138,7 +140,10 @@ export class ServicosPage implements OnInit {
   }
 
   filtrarServicos() {
-    this.navController.navigateForward('servicos/filtros');
+    if(this.title == "Meus Anúncios")
+      this.navController.navigateForward('servicos/filtros/meusAnuncios');
+    else
+      this.navController.navigateForward('servicos/filtros');
   }
 
   mostraServicosFiltrados(array:Array<any>){

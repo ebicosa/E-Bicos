@@ -1,5 +1,5 @@
 import { AuthService } from './services/auth.service';
-import { ToastController, LoadingController } from '@ionic/angular';
+import {LoadingController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -25,10 +25,10 @@ export class AppComponent implements OnInit{
 
   private nome_de_perfil: string;
   private e_mail: string;
+  private subcategorias: Array<any> = new Array<any>();
 
 
   constructor(private loadingCtrl: LoadingController,
-    private tostctrl: ToastController,
     private authservice: AuthService) {
     if(localStorage.getItem('profile_name') === null){
       localStorage.setItem('profile_name', 'Usuario Logado');
@@ -40,11 +40,21 @@ export class AppComponent implements OnInit{
     this.e_mail = localStorage.getItem('e_mail');
   }
   ngOnInit() {
-    localStorage.setItem('subcategorias', JSON.stringify([{nome: 'Eletricista'},{nome: 'Encanador'}]));
-    localStorage.setItem('categorias', JSON.stringify([{nome: 'Construção Civil'},{nome: 'Serviços domésticos'}]));
-    localStorage.setItem('estados', JSON.stringify( [{nome: 'Paraíba'}, { nome: 'Acre'}]));
-    localStorage.setItem('cidades', JSON.stringify([{nome: 'Campina Grande'}, { nome: 'Rio Branco'}]));
-    localStorage.setItem('faixasPrecos', JSON.stringify( [{minimo: 100, maximo: 1000},{minimo: 1000, maximo:5000}]));
+    localStorage.setItem('categorias', JSON.stringify([
+      {nome: 'Assistência Técnica'},
+      {nome: 'Aulas de reforço'},
+      {nome: 'Automóveis'},
+      {nome: 'Construção Civil'},
+      {nome: 'Controle de Pragas'},
+      {nome: 'Eventos'},
+      {nome: 'Programação'},
+      {nome: 'Serviços Domésticos'}]));
+    localStorage.setItem('faixasPrecos', JSON.stringify([
+      {minimo: "R$ 0,00", maximo: "R$ 100,00"},
+      {minimo: "R$ 100,00", maximo: "R$ 1000,00"},
+      {minimo: "R$ 1000,00", maximo: "R$ 5000,00"},
+      {minimo: "A combinar", maximo: "A combinar"}
+    ]));
   }
 
   async logout(){

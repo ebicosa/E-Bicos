@@ -1,7 +1,6 @@
-import { DatePipe } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
-import { NavController } from '@ionic/angular';
 import { Estado, Cidade } from 'src/app/interface/localidade';
 
 @Component({
@@ -9,8 +8,9 @@ import { Estado, Cidade } from 'src/app/interface/localidade';
   templateUrl: 'filtros.page.html',
   styleUrls: ['filtros.page.scss'],
 })
+
 export class FiltrosPage implements OnInit {
-  private subcategorias:JSON[];
+  private subcategorias: Array<any>;
   public estados: Array<Estado>;
   public estado: Estado;
   public cidades: Array<Cidade>;
@@ -19,24 +19,23 @@ export class FiltrosPage implements OnInit {
   public data:Date;
   private faixasPrecos:JSON[];
   private selected:JSON[];
-  constructor(private router: Router, private navController: NavController) {
-    if(localStorage.getItem("subcategorias") === null){
-      localStorage.setItem("subcategorias", JSON.stringify([{nome: "Eletricista"},{nome: "Encanador"}]));
-    }
-    if(localStorage.getItem("faixasPrecos") === null){
-      localStorage.setItem("faixasPrecos", JSON.stringify( [{minimo: 100, maximo: 1000},{minimo: 1000, maximo:5000}]));
-    }
-    this.subcategorias = JSON.parse(localStorage.getItem("subcategorias"));
+
+  constructor(private router: Router, private http: HttpClient) {
+    this.subcategorias = new Array<any>();
+    this.http.get('https://raw.githubusercontent.com/Isaiasdd/utils/master/profissoes.json')
+      .subscribe(data => {
+        const subcategorias = JSON.parse(JSON.stringify(data)).profissoes;
+        subcategorias.forEach(elemento => {
+          this.subcategorias.push({ nome: elemento });
+        });
+      }
+    )
     this.faixasPrecos = JSON.parse(localStorage.getItem("faixasPrecos"));
     localStorage.setItem("selected_filtrosPage", JSON.stringify([{},{},{},{},]));
     this.selected = JSON.parse(localStorage.getItem("selected_filtrosPage"));
   }
 
-  ngOnInit(){
-    fetch(`${this.baseURL}/estados?orderBy=nome`)
-      .then(response => response.json())
-      .then(result => this.estados = result);
-  }
+  ngOnInit(){}
 
   selectChanged(obj:any, indice:number){
     if(indice === 1){
@@ -70,6 +69,9 @@ export class FiltrosPage implements OnInit {
         valorParaEnviar: arraySelected,
        }
       };
+    if(this.router.url.endsWith("meusAnuncios"))
+      this.router.navigate(['servicos/meusAnuncios'], navigationExtras);
+    else
       this.router.navigate(['servicos'], navigationExtras);
   }
 }
